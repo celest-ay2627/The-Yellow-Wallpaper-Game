@@ -1,0 +1,1231 @@
+<!doctype html>
+<html class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,600;1,300&display=swap&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IM+Fell+English:ital&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    @keyframes wallpaperPattern {
+      0%, 100% { background-position: 0% 0%; }
+      50% { background-position: 3% 2%; }
+    }
+    @keyframes womanShadow {
+      0% { opacity: 0; }
+      50% { opacity: 0.4; }
+      100% { opacity: 0.7; }
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; filter: brightness(1); }
+    }
+    @keyframes screenShake {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-3px, 2px); }
+      50% { transform: translate(2px, -3px); }
+      75% { transform: translate(-2px, 3px); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
+      50% { box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDelayed {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes drift {
+      0%, 100% { transform: translateX(0px); }
+      50% { transform: translateX(8px); }
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    
+    html, body { height: 100%; }
+    .wallpaper-bg {
+      background: 
+        repeating-linear-gradient(120deg, transparent, transparent 35px, rgba(250, 190, 80, 0.08) 35px, rgba(250, 190, 80, 0.08) 70px),
+        repeating-linear-gradient(60deg, transparent, transparent 40px, rgba(180, 140, 30, 0.06) 40px, rgba(180, 140, 30, 0.06) 80px),
+        linear-gradient(135deg, #2d1b0a 0%, #3d2415 50%, #2d1b0a 100%);
+      background-size: 100% 100%;
+      animation: wallpaperPattern 20s ease-in-out infinite;
+    }
+
+    .prose-font { font-family: 'Crimson Pro', 'IM Fell English', serif; font-weight: 300; }
+    .display-font { font-family: 'Playfair Display', serif; font-weight: 900; }
+    .journal-font { font-family: 'IM Fell English', serif; font-style: italic; }
+    
+    .distortion-1 { filter: hue-rotate(0deg) contrast(1) brightness(1) saturate(1); transition: filter 0.8s ease-out; }
+    .distortion-2 { filter: hue-rotate(15deg) contrast(1.1) brightness(0.97) saturate(1.2); animation: flicker 8s infinite; }
+    .distortion-3 { filter: hue-rotate(35deg) contrast(1.25) brightness(0.92) saturate(1.5) grayscale(0.1); animation: breathe 4s ease-in-out infinite; }
+
+    .author-portrait {
+      background: linear-gradient(135deg, rgba(250, 190, 80, 0.3) 0%, rgba(180, 100, 20, 0.3) 100%);
+      border: 3px solid rgba(250, 190, 80, 0.5);
+      box-shadow: 0 0 40px rgba(250, 190, 80, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-glass {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(250, 190, 80, 0.25);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(250, 190, 80, 0.05);
+    }
+
+    .button-elegant {
+      padding: 12px 28px;
+      border: 2px solid rgba(250, 190, 80, 0.5);
+      background: rgba(250, 190, 80, 0.1);
+      color: #ffc851;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button-elegant:hover {
+      background: rgba(250, 190, 80, 0.25);
+      box-shadow: 0 0 20px rgba(250, 190, 80, 0.4);
+      transform: translateY(-2px);
+      border-color: rgba(250, 190, 80, 0.8);
+    }
+
+    .transition-btn {
+      padding: 10px 16px;
+      border: 2px solid rgba(250, 190, 80, 0.3);
+      background: rgba(0, 0, 0, 0.3);
+      color: #ffc851;
+      font-size: 13px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'IM Fell English', serif;
+      letter-spacing: 0.5px;
+    }
+
+    .transition-btn:hover:not(:disabled) {
+      background: rgba(250, 190, 80, 0.15);
+      border-color: rgba(250, 190, 80, 0.6);
+      box-shadow: 0 0 12px rgba(250, 190, 80, 0.3);
+    }
+
+    .transition-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .correct-glow {
+      animation: pulseGlow 0.8s ease-out;
+      background: rgba(34, 197, 94, 0.2) !important;
+      border-color: rgba(34, 197, 94, 0.6) !important;
+      color: #86efac !important;
+    }
+
+    .wrong-shake {
+      animation: screenShake 0.4s;
+      background: rgba(220, 38, 38, 0.2) !important;
+      border-color: rgba(220, 38, 38, 0.6) !important;
+      color: #fca5a5 !important;
+    }
+
+    .hud-stat {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(250, 190, 80, 0.3);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .insight-badge {
+      background: rgba(168, 85, 247, 0.2);
+      border: 1px solid rgba(168, 85, 247, 0.5);
+      color: #d8b4fe;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .suspicion-badge {
+      background: rgba(220, 38, 38, 0.2);
+      border: 1px solid rgba(220, 38, 38, 0.5);
+      color: #fca5a5;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .narrative-text { font-size: 16px; line-height: 1.8; color: #f5e6d3; margin-bottom: 1.2rem; }
+
+    .woman-silhouette { animation: womanShadow 3s ease-in-out infinite; opacity: 0; }
+
+    .room-visual { font-size: 32px; margin: 20px 0; text-align: center; animation: breathe 4s ease-in-out infinite; opacity: 0.8; }
+
+    .fade-in-word { animation: slideUp 0.6s ease-out; }
+
+    .day-indicator {
+      font-size: 48px;
+      font-weight: 900;
+      background: linear-gradient(135deg, rgba(250, 190, 80, 0.3), rgba(180, 100, 20, 0.3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px rgba(250, 190, 80, 0.3);
+    }
+
+    /* Journal Reflection Screen */
+    @keyframes inkDrop {
+      0% { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes penScratch {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    .journal-screen {
+      background:
+        repeating-linear-gradient(
+          transparent,
+          transparent 31px,
+          rgba(180, 130, 40, 0.12) 31px,
+          rgba(180, 130, 40, 0.12) 32px
+        ),
+        linear-gradient(135deg, #1a0f04 0%, #2a1508 50%, #1a0f04 100%);
+    }
+    .journal-card {
+      background: rgba(12, 6, 1, 0.7);
+      border: 1px solid rgba(250, 190, 80, 0.35);
+      box-shadow: 0 0 60px rgba(250, 190, 80, 0.08), inset 0 0 40px rgba(0,0,0,0.4);
+      animation: inkDrop 0.7s ease-out;
+    }
+    .reflection-textarea {
+      width: 100%;
+      min-height: 140px;
+      background: rgba(255, 240, 200, 0.04);
+      border: 1px solid rgba(250, 190, 80, 0.2);
+      border-radius: 4px;
+      color: #f5e6d3;
+      font-family: 'IM Fell English', serif;
+      font-size: 16px;
+      line-height: 2;
+      padding: 14px 16px;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .reflection-textarea:focus {
+      border-color: rgba(250, 190, 80, 0.5);
+      box-shadow: 0 0 16px rgba(250, 190, 80, 0.12);
+    }
+    .reflection-textarea::placeholder {
+      color: rgba(201, 165, 114, 0.4);
+      font-style: italic;
+    }
+    .quill-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      color: rgba(250, 190, 80, 0.35);
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .quill-divider::before,
+    .quill-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(250, 190, 80, 0.3), transparent);
+    }
+    .skip-link {
+      background: none;
+      border: none;
+      color: rgba(201, 165, 114, 0.45);
+      font-family: 'IM Fell English', serif;
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.3s;
+      padding: 0;
+    }
+    .skip-link:hover { color: rgba(201, 165, 114, 0.75); }
+    .reflection-entry {
+      background: rgba(255, 240, 200, 0.03);
+      border: 1px solid rgba(250, 190, 80, 0.2);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+    .reflection-entry-prompt {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: #ffc851;
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+    .reflection-entry-text {
+      font-family: 'IM Fell English', serif;
+      font-size: 15px;
+      color: #f0dfc0;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .char-counter {
+      font-size: 11px;
+      color: rgba(201, 165, 114, 0.5);
+      text-align: right;
+      margin-top: 6px;
+      font-family: 'Crimson Pro', serif;
+    }
+  </style>
+ </head>
+ <body class="h-full">
+  <div id="app" class="h-full w-full overflow-auto wallpaper-bg">
+
+    <!-- Author Intro Screen -->
+    <div id="screen-author" class="min-h-full flex flex-col items-center justify-start p-6 md:p-12">
+      <div class="max-w-3xl w-full py-8">
+        <div class="mb-12 flex flex-col items-center">
+          <div class="w-40 h-40 md:w-48 md:h-48 rounded-full author-portrait flex items-center justify-center mb-6">
+            <div class="text-6xl">📖</div>
+          </div>
+          <div class="room-visual">📕</div>
+        </div>
+        <h1 id="author-name" class="display-font text-5xl md:text-6xl text-center mb-2" style="color: #ffc851; letter-spacing: 2px;">Charlotte Perkins Gilman</h1>
+        <p id="author-bio" class="prose-font text-center text-lg" style="color: #d4a574;">1860–1935 | American writer, feminist, and social reformer</p>
+        <div class="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-600/40 to-transparent mx-auto my-8"></div>
+        <div class="card-glass p-8 rounded-lg mb-10">
+          <h3 class="display-font text-2xl mb-6" style="color: #ffc851;">Charlotte's Life: A Story of Survival</h3>
+          <div class="space-y-4 prose-font text-sm leading-relaxed" style="color: #d4a574;">
+            <p><strong style="color: #ffc851;">1860:</strong> Born in Hartford, Connecticut. Her family was progressive but financially unstable—her father eventually abandoned them.</p>
+            <p><strong style="color: #ffc851;">1884:</strong> Married artist Charles Stetson. One year later, she experienced severe postpartum depression—a real medical crisis that worsened under isolation and control.</p>
+            <p><strong style="color: #ffc851;">1887:</strong> She consulted Dr. Silas Weir Mitchell, the most famous neurologist of the time. His prescription: the "Rest Cure"—<strong>complete bed rest, no work, no reading, no writing, no intellectual engagement.</strong></p>
+            <p><strong style="color: #ffc851;">Crisis:</strong> The "cure" destroyed her. She became worse, not better. Her mind felt like it was erasing. Against medical orders, <strong>she secretly began writing again.</strong></p>
+            <p><strong style="color: #ffc851;">1892:</strong> "The Yellow Wallpaper" was published. Dr. Mitchell actually read it—and reportedly <strong>changed his treatment methods.</strong> The story became a weapon against the very system that nearly destroyed her.</p>
+            <p><strong style="color: #ffc851;">1893–1935:</strong> She became a leading feminist thinker, published 200+ works, lectured internationally on women's independence, economics, and labor. She proved her mind was powerful, not weak.</p>
+            <p style="font-style: italic; border-top: 1px solid rgba(250, 190, 80, 0.3); padding-top: 16px;"><strong style="color: #ffc851;">Why This Matters:</strong> Gilman's defiance—her refusal to accept silencing, her act of writing despite prohibition—saved not just herself but transformed medicine and society's understanding of women's minds.</p>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-1 gap-6 mb-10">
+          <div class="card-glass p-6 rounded-lg">
+            <div class="flex gap-4">
+              <div class="text-4xl">📚</div>
+              <div>
+                <h3 class="display-font text-xl mb-2" style="color: #ffc851;">The Story Behind the Story</h3>
+                <p class="prose-font text-sm leading-relaxed" style="color: #d4a574;">After struggling with postpartum depression, Gilman sought treatment from Dr. Silas Weir Mitchell, a famous neurologist who prescribed the "Rest Cure"—complete bed rest, isolation, and no intellectual stimulation.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-glass p-6 rounded-lg">
+            <div class="flex gap-4">
+              <div class="text-4xl">💔</div>
+              <div>
+                <h3 class="display-font text-xl mb-2" style="color: #ffc851;">The Treatment That Harmed</h3>
+                <p class="prose-font text-sm leading-relaxed" style="color: #d4a574;">The "cure" made her worse. Forbidden to write, read deeply, or engage her mind, Gilman felt herself disappearing. She wrote "The Yellow Wallpaper" to expose the cruelty hidden within medical authority and patriarchal control.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-glass p-6 rounded-lg">
+            <div class="flex gap-4">
+              <div class="text-4xl">⚡</div>
+              <div>
+                <h3 class="display-font text-xl mb-2" style="color: #ffc851;">A Story to Save Lives</h3>
+                <p class="prose-font text-sm leading-relaxed" style="color: #d4a574;">"I wrote it to reach Dr. Mitchell. If I could not have his ear, I would have the public's ear." The story successfully challenged the Rest Cure, helping countless women escape this harmful treatment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="prose-font text-center text-base italic mb-8" style="color: #d4a574;">Now step into the story and experience her struggle. Every choice reveals the hidden dynamics of control, defiance, and the search for freedom.</p>
+        <div class="text-center">
+          <button onclick="enterGame()" class="button-elegant">
+            <i data-lucide="play" class="inline w-5 h-5 mr-2"></i>Enter the Story
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Title Screen -->
+    <div id="screen-title" class="h-full flex flex-col items-center justify-center p-8 text-center hidden">
+      <div class="max-w-2xl">
+        <div class="mb-8 room-visual">📖📕📖</div>
+        <h1 id="main-title" class="display-font text-6xl md:text-7xl mb-4" style="color: #ffc851; letter-spacing: 3px;">The Yellow Wallpaper</h1>
+        <p class="prose-font text-xl italic mb-6" style="color: #d4a574;">An Interactive Literary Experience</p>
+        <div class="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-600/40 to-transparent mx-auto my-8"></div>
+        <p id="main-instruction" class="journal-font text-base mb-10" style="color: #c9a572; font-size: 18px;">Select the correct transition device to unlock the narrator's hidden thoughts</p>
+        <button onclick="startGame()" class="button-elegant">
+          <i data-lucide="book-open" class="inline w-5 h-5 mr-2"></i>Begin the Journey
+        </button>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="screen-game" class="h-full flex flex-col p-6 hidden">
+      <!-- Top HUD -->
+      <header class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-4">
+          <div class="day-indicator" id="day-num">1</div>
+          <div>
+            <div class="prose-font text-xs uppercase tracking-widest" style="color: #c9a572;">Day <span id="day-num-text">1</span></div>
+            <div id="phase-badge" class="prose-font text-sm font-bold mt-1" style="color: #ffc851;">Daytime</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="hud-stat suspicion-badge">
+            <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+            <span>Suspicion: <span id="suspicion-val">0</span>%</span>
+          </div>
+          <div class="hud-stat insight-badge">
+            <i data-lucide="file-text" style="width: 16px; height: 16px;"></i>
+            <span>Evidence: <span id="insight-val">0</span>/5</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Suspicion Bar -->
+      <div class="w-full h-2 bg-black/50 border border-red-700/30 rounded mb-6 overflow-hidden">
+        <div id="suspicion-bar" class="h-full bg-gradient-to-r from-red-600/50 to-red-700/80 transition-all duration-500" style="width: 0%"></div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col lg:flex-row gap-6 min-h-0">
+        <!-- Narrative Panel -->
+        <div id="narrative-panel" class="flex-1 card-glass rounded-lg p-8 overflow-auto">
+          <div class="prose-font mb-2 uppercase tracking-widest" style="color: #c9a572; font-size: 12px;">Day <span id="day-num-title">1</span></div>
+          <h2 id="day-title" class="display-font text-3xl mb-8" style="color: #ffc851;">The Prescription</h2>
+          <div class="room-visual" id="room-visual">🏠</div>
+          <div id="narrative-content" class="space-y-4"></div>
+          <div id="scene-highlight" class="mt-6 p-4 rounded border-l-4 border-amber-500/60 bg-amber-500/10 hidden">
+            <p class="prose-font text-sm italic" style="color: #ffc851;" id="highlight-text"></p>
+          </div>
+          <div id="woman-hint" class="mt-8 pt-6 border-t border-yellow-600/30 hidden">
+            <p class="journal-font italic" style="color: #d4a574; font-size: 18px;" id="woman-text">... there is a strange movement in the pattern...</p>
+          </div>
+        </div>
+
+        <!-- Journal/Puzzle Panel -->
+        <div id="journal-panel" class="lg:w-96 card-glass rounded-lg p-8 flex flex-col overflow-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <i data-lucide="pen-tool" style="width: 20px; height: 20px; color: #ffc851;"></i>
+            <h2 class="display-font text-xl" style="color: #ffc851;">Secret Journal</h2>
+          </div>
+
+          <!-- Puzzle Area -->
+          <div id="puzzle-area" class="flex-1 space-y-4">
+            <div class="prose-font" style="color: #f5e6d3; line-height: 1.8;">
+              <p id="sentence-a" class="bg-black/40 p-4 rounded border border-yellow-600/20 text-base"></p>
+            </div>
+            <div id="transition-choices" class="flex flex-wrap gap-2 my-4"></div>
+            <div class="prose-font" style="color: #f5e6d3; line-height: 1.8;">
+              <p id="sentence-b" class="bg-black/40 p-4 rounded border border-yellow-600/20 text-base"></p>
+            </div>
+          </div>
+
+          <!-- Feedback -->
+          <div id="feedback" class="mt-6 p-4 rounded border-l-4 hidden" style="border-color: rgba(168, 85, 247, 0.6); color: #d8b4fe; font-size: 13px; line-height: 1.6;"></div>
+
+          <!-- Continue Button -->
+          <button id="continue-btn" onclick="advanceDay()" class="mt-6 w-full py-3 bg-gradient-to-r from-yellow-700/30 to-yellow-600/20 border border-yellow-600/40 text-yellow-300/80 prose-font rounded hover:bg-yellow-700/50 transition-all hidden" style="letter-spacing: 1px;">Continue ➜</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journal Reflection Screen -->
+    <div id="screen-journal" class="min-h-full flex flex-col items-center justify-center p-6 md:p-10 journal-screen hidden">
+      <div class="max-w-xl w-full">
+        <div class="journal-card rounded-lg p-8 md:p-10">
+          <div class="flex items-center gap-3 mb-2">
+            <span style="font-size: 28px;">🪶</span>
+            <span class="prose-font text-xs uppercase tracking-widest" style="color: #c9a572;" id="journal-day-label">Day 5 — Secret Journal</span>
+          </div>
+          <h2 class="display-font text-3xl mb-1" style="color: #ffc851;">A Moment Alone</h2>
+          <p class="journal-font text-sm mb-6" style="color: #c9a572; font-style: italic;">John is away. Write freely. No one will see this.</p>
+          <div class="quill-divider">✦ reflection ✦</div>
+          <p class="prose-font text-base mb-5" id="journal-prompt-text" style="color: #f5e6d3; line-height: 1.75; font-size: 17px;"></p>
+          <textarea
+            id="journal-textarea"
+            class="reflection-textarea"
+            placeholder="Begin writing… your words are safe here."
+            maxlength="1200"
+            oninput="updateCharCount(this)"
+          ></textarea>
+          <div class="char-counter"><span id="char-count">0</span> / 1200</div>
+          <div class="flex items-center justify-between mt-7">
+            <button class="skip-link" onclick="submitReflection(true)">Skip this entry</button>
+            <button onclick="submitReflection(false)" class="button-elegant" style="padding: 10px 24px; font-size: 14px;">
+              <i data-lucide="feather" class="inline w-4 h-4 mr-2"></i>Seal the entry
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ending Screen -->
+    <div id="screen-end" class="h-full flex flex-col items-center justify-center p-8 text-center hidden">
+      <div class="max-w-2xl">
+        <div class="mb-8 room-visual" style="font-size: 64px;">✨</div>
+        <h2 class="display-font text-5xl mb-4" style="color: #ffc851;">She is free.</h2>
+        <p class="journal-font italic text-xl mb-8" style="color: #d4a574; font-size: 20px;">"I've got out at last... And I've pulled off most of the paper, so you can't put me back!"</p>
+        <div class="card-glass rounded-lg p-8 mb-8 text-left">
+          <div id="end-stats" class="prose-font space-y-3" style="color: #d4a574;"></div>
+        </div>
+        <button onclick="resetGame()" class="button-elegant">
+          <i data-lucide="rotate-ccw" class="inline w-5 h-5 mr-2"></i>Play Again
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+const days = [
+  {
+    phase: 'Daytime', dayTitle: 'The Prescription', roomEmoji: '🏠',
+    highlight: 'John dismisses her concerns.',
+    narrative: [
+      '"Rest cure," John says. "Complete bed rest, isolation, and absolute mental rest."',
+      'The nursery at the top of the house. Barred windows. Rings in the wall for restraints.',
+      'The wallpaper has a recurrent spot where the pattern lolls like a broken neck. Two bulbous eyes stare upside down.'
+    ],
+    sentenceA: 'John laughs at me about this wallpaper.',
+    sentenceB: 'He says that nothing is worse for a nervous patient than to give way to such fancies.',
+    choices: [
+      { word: 'Furthermore', type: 'additive', correct: false },
+      { word: 'Consequently', type: 'causal', correct: true },
+      { word: 'On the contrary', type: 'adversative', correct: false },
+      { word: 'Meanwhile', type: 'temporal', correct: false },
+      { word: 'In fact', type: 'emphatic', correct: false }
+    ],
+    correctFeedback: '✧ CAUSAL: His laughter CAUSES her to suppress her observations. Authority silences perception.',
+    wrongFeedback: { 'additive': '"Furthermore" just adds more — it doesn\'t show cause-effect.', 'adversative': '"On the contrary" suggests he\'d oppose himself.', 'temporal': '"Meanwhile" breaks the causal chain.', 'emphatic': '"In fact" emphasizes but doesn\'t show his dismissal causes her silence.' },
+    suspicionOnWrong: { 'temporal': 15, 'adversative': 8, 'additive': 5, 'emphatic': 6 }
+  },
+  {
+    phase: 'Night', dayTitle: 'The Pattern Emerges', roomEmoji: '🌙',
+    highlight: 'She sees a woman trapped in the wallpaper.',
+    narrative: [
+      'At night, in moonlight, the wallpaper becomes BARS.',
+      'Behind the pattern, a woman. She crawls. She creeps.',
+      'By day she is trapped. By night, I see her more clearly—or do I? Is she real, or am I the woman?'
+    ],
+    sentenceA: 'I have locked the door.',
+    sentenceB: 'John must not know I am watching the pattern at night.',
+    choices: [
+      { word: 'Because', type: 'causal', correct: true },
+      { word: 'Although', type: 'adversative', correct: false },
+      { word: 'Similarly', type: 'comparative', correct: false },
+      { word: 'Nonetheless', type: 'adversative', correct: false },
+      { word: 'As a result', type: 'causal-reversed', correct: false }
+    ],
+    correctFeedback: '✧ CAUSAL: She locks the door BECAUSE she must hide her awakening. The secret journal begins.',
+    wrongFeedback: { 'adversative': '"Although/Nonetheless" suggest contradiction — she\'s explaining cause, not contrast.', 'comparative': '"Similarly" compares two things — these are cause and effect.', 'causal-reversed': '"As a result" reverses the logic — locking comes BEFORE hiding, not after.' },
+    suspicionOnWrong: { 'adversative': 12, 'comparative': 10, 'causal-reversed': 20 },
+    womanText: '... there is a strange movement in the pattern...'
+  },
+  {
+    phase: 'Daytime', dayTitle: 'The Unraveling', roomEmoji: '🏠',
+    highlight: 'John notices her obsession. Suspicion rises.',
+    narrative: [
+      '"Why are you so interested in that wallpaper?" John asks, observing her closely.',
+      'She cannot stop staring at it. The pattern has her now.',
+      'His eyes narrow. He does not understand. Or worse—he understands too well.'
+    ],
+    sentenceA: 'I tell him I am fine, that it is merely a pattern.',
+    sentenceB: 'He studies me with concern, then returns to his medical journals.',
+    choices: [
+      { word: 'But', type: 'adversative', correct: true },
+      { word: 'Also', type: 'additive', correct: false },
+      { word: 'However', type: 'adversative-weak', correct: false },
+      { word: 'Then', type: 'temporal', correct: false },
+      { word: 'Certainly', type: 'emphatic', correct: false }
+    ],
+    correctFeedback: '✧ ADVERSATIVE: "But" shows the contradiction—she lies to him, yet he senses it anyway.',
+    wrongFeedback: { 'additive': '"Also" adds information, but she\'s creating a contrast (lie vs. truth).', 'adversative-weak': '"However" works but is weaker than "But" — the immediate contradiction matters.', 'temporal': '"Then" suggests sequence, not the opposition between her words and his perception.', 'emphatic': '"Certainly" affirms but doesn\'t show contrast.' },
+    suspicionOnWrong: { 'additive': 18, 'adversative-weak': 8, 'temporal': 15, 'emphatic': 10 }
+  },
+  {
+    phase: 'Night', dayTitle: 'The Woman Crawls Free', roomEmoji: '🌙',
+    highlight: 'The woman behind the pattern becomes real to her.',
+    narrative: [
+      '"There is a woman trapped," I whisper to myself.',
+      'I can trace her body now. The way she moves. The way she WANTS to move.',
+      'She crawls. Round and round. Round and round. Just like I crawl through this house. Round and round in circles.'
+    ],
+    sentenceA: 'The pattern imprisons her.',
+    sentenceB: 'The pattern imprisons ME.',
+    choices: [
+      { word: 'In the same way', type: 'comparative', correct: true },
+      { word: 'Furthermore', type: 'additive', correct: false },
+      { word: 'Yet', type: 'adversative', correct: false },
+      { word: 'Ultimately', type: 'emphatic', correct: false },
+      { word: 'Then again', type: 'reformulative', correct: false }
+    ],
+    correctFeedback: '✧ COMPARATIVE: "In the same way" reveals she IS the woman. Her imprisonment mirrors the trapped figure—they are one.',
+    wrongFeedback: { 'additive': '"Furthermore" adds a new fact, but she\'s recognizing they\'re the SAME.', 'adversative': '"Yet" suggests opposition, but she\'s discovering unity.', 'emphatic': '"Ultimately" concludes but doesn\'t show the parallel.', 'reformulative': '"Then again" reinterprets but misses the equation.' },
+    suspicionOnWrong: { 'additive': 10, 'adversative': 8, 'emphatic': 12, 'reformulative': 7 },
+    womanText: '... she crawls through every pattern, endlessly, just as I do...'
+  },
+  {
+    phase: 'Daytime', dayTitle: 'Day 5: His Authority', roomEmoji: '🏠',
+    highlight: 'John insists she stop her "nervous behavior."',
+    narrative: [
+      'John enters with his physician\'s bag. His manner is firm, professional, unyielding.',
+      '"Your condition worsens because you insist on these fancies," he says.',
+      'She knows better than to argue with a man of medicine.'
+    ],
+    sentenceA: 'I tried to explain my observations to him.',
+    sentenceB: 'He dismissed every word as symptom of hysteria.',
+    choices: [
+      { word: 'Yet', type: 'adversative', correct: true },
+      { word: 'Therefore', type: 'causal', correct: false },
+      { word: 'Moreover', type: 'additive', correct: false },
+      { word: 'Afterward', type: 'temporal', correct: false },
+      { word: 'Plainly', type: 'emphatic', correct: false }
+    ],
+    correctFeedback: '✧ ADVERSATIVE: "Yet" emphasizes the cruel irony—she speaks truth; he calls it disease.',
+    wrongFeedback: { 'causal': '"Therefore" suggests she spoke BECAUSE he dismissed—wrong order.', 'additive': '"Moreover" adds but doesn\'t show the contradiction.', 'temporal': '"Afterward" suggests sequence, not opposition.', 'emphatic': '"Plainly" states but doesn\'t show the clash between her reality and his dismissal.' },
+    suspicionOnWrong: { 'causal': 18, 'additive': 8, 'temporal': 12, 'emphatic': 6 }
+  },
+  {
+    phase: 'Night', dayTitle: 'Day 6: Deeper Vision', roomEmoji: '🌙',
+    highlight: 'The woman moves with purpose now.',
+    narrative: [
+      'The woman in the wallpaper no longer creeps aimlessly.',
+      'She shakes the pattern. She pushes against it. She wants OUT.',
+      'And I—I understand her desperation as if it were my own breathing.'
+    ],
+    sentenceA: 'The woman moves with intention.',
+    sentenceB: 'She is no longer trapped by the pattern—she is trapped by the knowledge that freedom is impossible.',
+    choices: [
+      { word: 'Now', type: 'temporal', correct: true },
+      { word: 'Similarly', type: 'comparative', correct: false },
+      { word: 'In contrast', type: 'adversative', correct: false },
+      { word: 'Besides', type: 'additive', correct: false },
+      { word: 'To summarize', type: 'emphatic', correct: false }
+    ],
+    correctFeedback: '✧ TEMPORAL: "Now" marks the turning point—the woman\'s awareness has shifted. Time itself pivots.',
+    wrongFeedback: { 'comparative': '"Similarly" compares, but this is a change, not a likeness.', 'adversative': '"In contrast" suggests opposition, not progression.', 'additive': '"Besides" adds but doesn\'t mark the shift in her consciousness.', 'emphatic': '"To summarize" looks back; this moment looks forward.' },
+    suspicionOnWrong: { 'comparative': 14, 'adversative': 10, 'additive': 8, 'emphatic': 12 },
+    womanText: '... she shakes the pattern now, with rage and purpose...'
+  },
+  {
+    phase: 'Daytime', dayTitle: 'Day 7: The Journal Expands', roomEmoji: '🏠',
+    highlight: 'She writes more boldly now, hiding the journal from John.',
+    narrative: [
+      'The journal grows thicker. Page after page of observations, theories, confessions.',
+      'She writes about the woman. About John. About the cure that cures nothing.',
+      'She writes to survive. To remember herself.'
+    ],
+    sentenceA: 'My writing is my rebellion.',
+    sentenceB: 'John believes I am resting; I am actually fighting.',
+    choices: [
+      { word: 'Whereas', type: 'adversative', correct: true },
+      { word: 'Also', type: 'additive', correct: false },
+      { word: 'In fact', type: 'emphatic', correct: false },
+      { word: 'Subsequently', type: 'temporal', correct: false },
+      { word: 'For instance', type: 'example', correct: false }
+    ],
+    correctFeedback: '✧ ADVERSATIVE: "Whereas" starkly contrasts the illusion (rest) with the truth (defiance).',
+    wrongFeedback: { 'additive': '"Also" adds but doesn\'t show the contrast between appearance and reality.', 'emphatic': '"In fact" emphasizes but doesn\'t show the paradox.', 'temporal': '"Subsequently" suggests sequence, not opposition.', 'example': '"For instance" gives examples, not the stark contrast needed here.' },
+    suspicionOnWrong: { 'additive': 10, 'emphatic': 8, 'temporal': 14, 'example': 6 }
+  },
+  {
+    phase: 'Night', dayTitle: 'Day 8: Merging', roomEmoji: '🌙',
+    highlight: 'The boundary between narrator and woman dissolves.',
+    narrative: [
+      'I no longer know if I am observing her or if she is observing me.',
+      'We are the same woman, repeated across the pattern infinitely.',
+      'Trapped. Creeping. Watching. Waiting for the moment of release.'
+    ],
+    sentenceA: 'I see myself in the pattern.',
+    sentenceB: 'I see the woman in myself.',
+    choices: [
+      { word: 'And', type: 'additive', correct: true },
+      { word: 'But', type: 'adversative', correct: false },
+      { word: 'Yet', type: 'adversative2', correct: false },
+      { word: 'So', type: 'causal', correct: false },
+      { word: 'Then', type: 'temporal', correct: false }
+    ],
+    correctFeedback: '✧ ADDITIVE: "And" connects the two halves of her fractured self. She is becoming one with the pattern.',
+    wrongFeedback: { 'adversative': '"But" suggests opposition, but she\'s merging, not contrasting.', 'adversative2': '"Yet" suggests opposition, but she\'s merging, not contrasting.', 'causal': '"So" implies causality, but this is simultaneous revelation.', 'temporal': '"Then" marks sequence, but these realizations happen at once.' },
+    suspicionOnWrong: { 'adversative': 9, 'adversative2': 9, 'causal': 11, 'temporal': 8 },
+    womanText: '... we are the same. We are one...'
+  },
+  {
+    phase: 'Daytime', dayTitle: 'Day 9: John\'s Concern', roomEmoji: '🏠',
+    highlight: 'John notices her increasing detachment.',
+    narrative: [
+      'John finds her staring at the wallpaper for hours.',
+      '"You are getting worse," he says, alarmed. His concern feels like a cage.',
+      'His doctor\'s eyes study her as if she is a specimen, not a person.'
+    ],
+    sentenceA: 'John insists the cure is working.',
+    sentenceB: 'She grows stranger every day.',
+    choices: [
+      { word: 'Yet', type: 'adversative', correct: true },
+      { word: 'Moreover', type: 'additive', correct: false },
+      { word: 'Because', type: 'causal', correct: false },
+      { word: 'Thus', type: 'causal2', correct: false },
+      { word: 'Later', type: 'temporal', correct: false }
+    ],
+    correctFeedback: '✧ ADVERSATIVE: "Yet" exposes the paradox—his "cure" and her deterioration happen together.',
+    wrongFeedback: { 'additive': '"Moreover" adds information but misses the contradiction.', 'causal': '"Because" suggests cause, but these are simultaneous contradictions.', 'causal2': '"Thus" suggests consequence, but these are simultaneous contradictions.', 'temporal': '"Later" marks sequence, not irony.' },
+    suspicionOnWrong: { 'additive': 12, 'causal': 15, 'causal2': 15, 'temporal': 10 }
+  },
+  {
+    phase: 'Night', dayTitle: 'Day 10: The Woman Breaks Free', roomEmoji: '🌙',
+    highlight: 'The woman\'s image is no longer bound by the pattern.',
+    narrative: [
+      'The woman reaches the bars of the pattern.',
+      'She breaks through. The wallpaper tears.',
+      'She is free—or at least, she is no longer contained by the pattern\'s geometry.'
+    ],
+    sentenceA: 'The woman escapes the pattern\'s grip.',
+    sentenceB: 'The pattern\'s hold on me strengthens.',
+    choices: [
+      { word: 'Conversely', type: 'adversative', correct: true },
+      { word: 'Likewise', type: 'comparative', correct: false },
+      { word: 'In addition', type: 'additive', correct: false },
+      { word: 'Subsequently', type: 'temporal', correct: false },
+      { word: 'To clarify', type: 'reformulative', correct: false }
+    ],
+    correctFeedback: '✧ ADVERSATIVE: "Conversely" shows the inversion—her freedom and my enslavement are mirror images.',
+    wrongFeedback: { 'comparative': '"Likewise" suggests similarity, but these are opposites.', 'additive': '"In addition" adds, but this is contradiction.', 'temporal': '"Subsequently" marks time, not opposition.', 'reformulative': '"To clarify" reframes, not reverses.' },
+    suspicionOnWrong: { 'comparative': 13, 'additive': 9, 'temporal': 12, 'reformulative': 10 },
+    womanText: '... she breaks free from the pattern...'
+  },
+  {
+    phase: 'Daytime', dayTitle: 'Day 11: Deterioration', roomEmoji: '🏠',
+    highlight: 'She can no longer hide her condition from John.',
+    narrative: [
+      'She stops eating. She barely sleeps. She stares at the wallpaper constantly.',
+      'John calls in another physician for consultation.',
+      'They discuss her "nerves" as if she is not in the room.'
+    ],
+    sentenceA: 'The doctors prescribe more rest, more isolation.',
+    sentenceB: 'She grows weaker by the hour.',
+    choices: [
+      { word: 'As a result', type: 'causal', correct: true },
+      { word: 'However', type: 'adversative', correct: false },
+      { word: 'For example', type: 'emphatic', correct: false },
+      { word: 'Then again', type: 'reformulative', correct: false },
+      { word: 'Immediately', type: 'temporal', correct: false }
+    ],
+    correctFeedback: '✧ CAUSAL: "As a result" shows how the prescribed cure directly causes her decline—the cruelty of the system.',
+    wrongFeedback: { 'adversative': '"However" suggests opposition, but the doctors\' orders and her weakness are linked.', 'emphatic': '"For example" gives instances, but this is cause-effect.', 'reformulative': '"Then again" questions, not concludes.', 'temporal': '"Immediately" shows timing, not causation.' },
+    suspicionOnWrong: { 'adversative': 16, 'emphatic': 10, 'reformulative': 8, 'temporal': 12 }
+  },
+  {
+    phase: 'Night', dayTitle: 'Day 12: Breaking Point', roomEmoji: '🌙',
+    highlight: 'She can no longer distinguish between reality and hallucination.',
+    narrative: [
+      'The woman in the wallpaper is REAL.',
+      'She is moving through the halls. She is crawling up the walls. She is EVERYWHERE.',
+      'Or is the woman me? Are we the same body, split across the pattern?'
+    ],
+    sentenceA: 'I am trapped in the wallpaper.',
+    sentenceB: 'The woman is trapped in me.',
+    choices: [
+      { word: 'At the same time', type: 'additive', correct: true },
+      { word: 'On the other hand', type: 'adversative', correct: false },
+      { word: 'For this reason', type: 'causal', correct: false },
+      { word: 'By contrast', type: 'adversative2', correct: false },
+      { word: 'In fact', type: 'emphatic', correct: false }
+    ],
+    correctFeedback: '✧ ADDITIVE: "At the same time" shows simultaneity—self and pattern, woman and narrator, all existing together.',
+    wrongFeedback: { 'adversative': '"On the other hand" shows opposition, but these are simultaneous.', 'causal': '"For this reason" suggests cause, not co-existence.', 'adversative2': '"By contrast" shows opposition, but these are simultaneous.', 'emphatic': '"In fact" affirms but doesn\'t show the dual nature of her imprisonment.' },
+    suspicionOnWrong: { 'adversative': 12, 'causal': 14, 'adversative2': 12, 'emphatic': 9 },
+    womanText: '... I am the woman. The woman is me. We are BOTH...'
+  },
+  {
+    phase: 'Daytime', dayTitle: 'Day 13: The Final Straw', roomEmoji: '🏠',
+    highlight: 'John threatens to lock her away permanently.',
+    narrative: [
+      '"If you continue this way," John says, "I will have no choice but to send you to an institution."',
+      'The threat hangs like a blade. Permanent confinement. Permanent loss of voice.',
+      'The cure was always a cage. Now he threatens a larger cage.'
+    ],
+    sentenceA: 'The Rest Cure was supposed to heal me.',
+    sentenceB: 'It has destroyed everything—my mind, my body, my sense of reality.',
+    choices: [
+      { word: 'Instead', type: 'adversative', correct: true },
+      { word: 'As well', type: 'additive', correct: false },
+      { word: 'Because', type: 'causal', correct: false },
+      { word: 'Later', type: 'temporal', correct: false },
+      { word: 'Most importantly', type: 'emphatic', correct: false }
+    ],
+    correctFeedback: '✧ ADVERSATIVE: "Instead" marks the inversion of medical promise—the cure became the crime.',
+    wrongFeedback: { 'additive': '"As well" adds, but the story is about reversal.', 'causal': '"Because" implies reason, but this is contradiction.', 'temporal': '"Later" marks time, not irony.', 'emphatic': '"Most importantly" judges, but this moment is about betrayal.' },
+    suspicionOnWrong: { 'additive': 14, 'causal': 12, 'temporal': 11, 'emphatic': 10 }
+  },
+  {
+    phase: 'Night', dayTitle: 'Day 14: The Woman Calls', roomEmoji: '🌙',
+    highlight: 'The woman beckons. She asks for help.',
+    narrative: [
+      'The woman is at the wallpaper, pressing against it.',
+      '"Help me get out," she seems to say.',
+      'And I realize: she is me, and I am her, and we are BOTH trapped.'
+    ],
+    sentenceA: 'I begin to understand the woman\'s desperation.',
+    sentenceB: 'I begin to understand my own.',
+    choices: [
+      { word: 'More precisely', type: 'reformulative', correct: true },
+      { word: 'Similarly', type: 'comparative', correct: false },
+      { word: 'However', type: 'adversative', correct: false },
+      { word: 'Furthermore', type: 'additive', correct: false },
+      { word: 'Afterward', type: 'temporal', correct: false }
+    ],
+    correctFeedback: '✧ REFORMULATIVE: "More precisely" reveals the truth—they are not two understandings but one realization.',
+    wrongFeedback: { 'comparative': '"Similarly" suggests two parallel feelings, but it\'s one unified truth.', 'adversative': '"However" creates contrast, but there is none.', 'additive': '"Furthermore" adds, but this is clarification.', 'temporal': '"Afterward" marks time, not identification.' },
+    suspicionOnWrong: { 'comparative': 11, 'adversative': 13, 'additive': 9, 'temporal': 10 },
+    womanText: '... she and I are one...'
+  },
+  {
+    phase: 'Daytime', dayTitle: 'Day 15: Planning', roomEmoji: '🏠',
+    highlight: 'She begins to formulate a plan.',
+    narrative: [
+      'She studies the room. The locked door. The barred window.',
+      'The wallpaper. Always the wallpaper.',
+      'There must be a way out. There HAS to be a way out.'
+    ],
+    sentenceA: 'I have been compliant for weeks.',
+    sentenceB: 'My mind has been planning my escape.',
+    choices: [
+      { word: 'Meanwhile', type: 'temporal', correct: true },
+      { word: 'Moreover', type: 'additive', correct: false },
+      { word: 'On the contrary', type: 'adversative', correct: false },
+      { word: 'So that', type: 'causal', correct: false },
+      { word: 'To reiterate', type: 'emphatic', correct: false }
+    ],
+    correctFeedback: '✧ TEMPORAL: "Meanwhile" shows the dual reality—outer compliance masks inner rebellion. Hidden resistance.',
+    wrongFeedback: { 'additive': '"Moreover" adds information but misses the hidden parallel.', 'adversative': '"On the contrary" suggests direct opposition, but the contrast is silent.', 'causal': '"So that" implies intention, but this is split consciousness.', 'emphatic': '"To reiterate" repeats but doesn\'t reveal the duality.' },
+    suspicionOnWrong: { 'additive': 12, 'adversative': 10, 'causal': 14, 'emphatic': 8 }
+  },
+  {
+    phase: 'Night', dayTitle: 'Day 16: The Truth Emerges', roomEmoji: '🌙',
+    highlight: 'The woman in the wallpaper is REAL.',
+    narrative: [
+      'There is a woman in the wallpaper.',
+      'She has been there all along—trapped by the pattern, just as I have been trapped by John, by medicine, by society.',
+      'She is creeping now. She is READY.'
+    ],
+    sentenceA: 'The woman moves with purpose now.',
+    sentenceB: 'I move with purpose now.',
+    choices: [
+      { word: 'Just as', type: 'comparative', correct: true },
+      { word: 'In addition', type: 'additive', correct: false },
+      { word: 'Yet', type: 'adversative', correct: false },
+      { word: 'Because', type: 'causal', correct: false },
+      { word: 'Before long', type: 'temporal', correct: false }
+    ],
+    correctFeedback: '✧ COMPARATIVE: "Just as" equates them—narrator and woman are not separate; they move as one consciousness.',
+    wrongFeedback: { 'additive': '"In addition" adds separate facts, but they are the same entity.', 'adversative': '"Yet" creates opposition, but she\'s recognizing unity.', 'causal': '"Because" suggests reason, but this is simultaneity.', 'temporal': '"Before long" marks timing, not identity.' },
+    suspicionOnWrong: { 'additive': 11, 'adversative': 9, 'causal': 13, 'temporal': 12 },
+    womanText: '... we are the same breath now...'
+  },
+  {
+    phase: 'Daytime', dayTitle: 'Day 17: The Breaking', roomEmoji: '🏠',
+    highlight: 'She stops pretending.',
+    narrative: [
+      'She no longer hides the journal.',
+      'She no longer pretends to rest.',
+      'She stands at the wallpaper and tears. Her hands bleeding. Her mind finally FREE.'
+    ],
+    sentenceA: 'John orders me to stop this behavior.',
+    sentenceB: 'I cannot stop. I will not stop. I must tear down the wallpaper.',
+    choices: [
+      { word: 'Yet', type: 'adversative', correct: true },
+      { word: 'Also', type: 'additive', correct: false },
+      { word: 'Therefore', type: 'causal', correct: false },
+      { word: 'Later', type: 'temporal', correct: false },
+      { word: 'Clearly', type: 'emphatic', correct: false }
+    ],
+    correctFeedback: '✧ ADVERSATIVE: "Yet" captures her defiance—his command cannot stop her now. She has finally claimed agency.',
+    wrongFeedback: { 'additive': '"Also" adds another fact, but this is rebellion against his authority.', 'causal': '"Therefore" suggests consequence, but this is pure defiance.', 'temporal': '"Later" marks time, not opposition.', 'emphatic': '"Clearly" affirms but doesn\'t show the clash.' },
+    suspicionOnWrong: { 'additive': 15, 'causal': 14, 'temporal': 11, 'emphatic': 9 }
+  },
+  {
+    phase: 'Night', dayTitle: 'Day 18: The Emergence', roomEmoji: '🌙',
+    highlight: 'The barrier between her and the woman dissolves completely.',
+    narrative: [
+      'The wallpaper is shredded now.',
+      'The woman crawls out.',
+      'The narrator crawls out.',
+      'They are the same body. The same mind. The same SCREAM.'
+    ],
+    sentenceA: 'The woman crawls across the floor.',
+    sentenceB: 'She does so because she has finally escaped the pattern.',
+    choices: [
+      { word: 'In fact', type: 'emphatic', correct: true },
+      { word: 'Although', type: 'adversative', correct: false },
+      { word: 'Similarly', type: 'comparative', correct: false },
+      { word: 'Then', type: 'temporal', correct: false },
+      { word: 'Besides', type: 'additive', correct: false }
+    ],
+    correctFeedback: '✧ EMPHATIC: "In fact" emphasizes the reality—she IS the crawling woman. No metaphor. No delusion. The truth.',
+    wrongFeedback: { 'adversative': '"Although" creates contradiction where there is truth.', 'comparative': '"Similarly" compares, but narrator and woman are one.', 'temporal': '"Then" marks sequence, but this is revelation.', 'additive': '"Besides" adds information, but this is clarification of identity.' },
+    suspicionOnWrong: { 'adversative': 14, 'comparative': 12, 'temporal': 10, 'additive': 9 },
+    womanText: '... I am crawling. The woman is crawling. We are CRAWLING...'
+  },
+  {
+    phase: 'Daytime', dayTitle: 'Day 19: The Confrontation', roomEmoji: '🏠',
+    highlight: 'John discovers her at last.',
+    narrative: [
+      'The door opens.',
+      'John enters.',
+      'He sees the shredded wallpaper. He sees her crawling. He sees his cure—his authority—crumbled to dust.'
+    ],
+    sentenceA: 'John stares in horror at the wallpaper I have destroyed.',
+    sentenceB: 'He cannot comprehend that I have reclaimed my freedom.',
+    choices: [
+      { word: 'Because', type: 'causal', correct: true },
+      { word: 'Although', type: 'adversative', correct: false },
+      { word: 'Moreover', type: 'additive', correct: false },
+      { word: 'Subsequently', type: 'temporal', correct: false },
+      { word: 'Conversely', type: 'adversative2', correct: false }
+    ],
+    correctFeedback: '✧ CAUSAL: "Because" connects his horror to his incomprehension—he cannot fathom her agency because it contradicts his control.',
+    wrongFeedback: { 'adversative': '"Although" creates false opposition; his horror CAUSES his incomprehension.', 'additive': '"Moreover" adds, but this is cause-effect.', 'temporal': '"Subsequently" marks time, not causation.', 'adversative2': '"Conversely" reverses, but one causes the other.' },
+    suspicionOnWrong: { 'adversative': 16, 'additive': 11, 'temporal': 13, 'adversative2': 14 }
+  },
+  {
+    phase: 'Night', dayTitle: 'Day 20: The Liberation', roomEmoji: '🔓',
+    highlight: 'She is finally, fully free.',
+    narrative: [
+      '"I\'ve got out at last," she says.',
+      '"And I\'ve pulled off most of the paper, so you can\'t put me back!"',
+      'John faints. His authority collapses. She crawls, free at last—mad, perhaps, but finally SEEN.'
+    ],
+    sentenceA: 'John loses consciousness at the sight of her liberation.',
+    sentenceB: 'She continues crawling, finally free from the wallpaper, free from his control, free from the cure that was never meant to heal.',
+    choices: [
+      { word: 'Meanwhile', type: 'temporal', correct: true },
+      { word: 'However', type: 'adversative', correct: false },
+      { word: 'Furthermore', type: 'additive', correct: false },
+      { word: 'Ultimately', type: 'emphatic', correct: false },
+      { word: 'In other words', type: 'reformulative', correct: false }
+    ],
+    correctFeedback: '✧ TEMPORAL: "Meanwhile" marks the simultaneity of his collapse and her ascension. As power falls, freedom rises.',
+    wrongFeedback: { 'adversative': '"However" suggests opposition, but this is coordinated action.', 'additive': '"Furthermore" adds, but this is parallel timing.', 'emphatic': '"Ultimately" concludes, but this is simultaneous.', 'reformulative': '"In other words" restates, but this is temporal opposition.' },
+    suspicionOnWrong: { 'adversative': 13, 'additive': 10, 'emphatic': 12, 'reformulative': 11 },
+    womanText: '... she crawls free. She is finally, finally FREE...'
+  }
+];
+
+const evidenceStatements = [
+  "Women's voices were often dismissed as hysteria.",
+  "Isolation worsened emotional suffering rather than healing it.",
+  "Writing became a means of preserving identity and agency.",
+  "Medical authority can be flawed and should be questioned.",
+  "Silence and obedience can reinforce harmful systems."
+];
+
+const evidenceConditions = [
+  { dayIndex: 0, requiresCorrect: true },
+  { dayIndex: 4, requiresCorrect: true },
+  { dayIndex: 8, requiresCorrect: true },
+  { dayIndex: 14, requiresCorrect: true },
+  { dayIndex: 19, requiresCorrect: true }
+];
+
+const narrativeConsequences = [
+  { title: "John's Footsteps", event: "You hear John's footsteps outside the nursery door. You quickly hide your journal before he notices your writing.", lesson: "Causal transitions connect events in sequence; confusing them breaks the narrative chain." },
+  { title: "Journal Smudged", event: "In your panic, ink smears across the page. Some of your thoughts become unreadable.", lesson: "Temporal transitions mark when events happen; without clarity, meaning disappears." },
+  { title: "The Pattern Shifts", event: "The wallpaper twists into a new shape. Meaning becomes harder to grasp.", lesson: "Comparative transitions reveal relationships; when misused, connections dissolve into chaos." },
+  { title: "Self-Doubt", event: '"Perhaps John is right," you think. You begin questioning your own observations.', lesson: "Adversative transitions highlight contradiction; ignoring them means losing confidence in truth." },
+  { title: "Jennie Interrupts", event: "Jennie enters unexpectedly, forcing you to stop writing and hide your journal.", lesson: "Temporal transitions control narrative flow; poor transitions invite unwanted intrusion." },
+  { title: "Candle Burns Low", event: "The candle flickers weakly. Darkness obscures the details you desperately seek.", lesson: "Reformulative transitions clarify meaning; without them, your thoughts fade into shadow." },
+  { title: "Missing Evidence", event: "A page from your journal disappears. A valuable observation is lost.", lesson: "Additive transitions build evidence; skipping them loses crucial details." },
+  { title: "Medical Notes Added", event: "John writes another note in your medical file, describing your concerns as symptoms.", lesson: "Emphatic transitions affirm reality; misuse allows others to redefine your truth." },
+  { title: "The Woman Retreats", event: "The woman behind the wallpaper vanishes deeper into the pattern.", lesson: "Causal transitions connect action to consequence; lose them, and lose her too." },
+  { title: "Distorted Memory", event: "You struggle to remember what happened yesterday. Connections begin to blur.", lesson: "Temporal transitions anchor events in time; without them, memory dissolves." }
+];
+
+// Journal reflection prompts at days 5, 10, 15, 20 (0-indexed: 4, 9, 14, 19)
+const journalPrompts = {
+  4:  { label: 'Day 5 — Secret Journal',  prompt: 'Have you ever felt unheard by someone in authority? How did it affect you?' },
+  9:  { label: 'Day 10 — Secret Journal', prompt: 'Is obedience always the same as respect? Explain your thinking.' },
+  14: { label: 'Day 15 — Secret Journal', prompt: 'How can writing help people preserve their identity and voice?' },
+  19: { label: 'Day 20 — Secret Journal', prompt: 'What does freedom mean to you?' }
+};
+
+let state = { day: 0, suspicion: 0, insights: 0, completed: false, evidenceUnlocked: [], reflections: {} };
+
+function enterGame() {
+  document.getElementById('screen-author').classList.add('hidden');
+  document.getElementById('screen-title').classList.remove('hidden');
+  lucide.createIcons();
+}
+
+function startGame() {
+  document.getElementById('screen-title').classList.add('hidden');
+  document.getElementById('screen-game').classList.remove('hidden');
+  loadDay();
+}
+
+function loadDay() {
+  const d = days[state.day];
+  setupDay(d);
+  lucide.createIcons();
+}
+
+function setupDay(d) {
+  document.getElementById('day-num').textContent = state.day + 1;
+  document.getElementById('day-num-text').textContent = state.day + 1;
+  document.getElementById('day-num-title').textContent = state.day + 1;
+  document.getElementById('day-title').textContent = d.dayTitle;
+  document.getElementById('room-visual').textContent = d.roomEmoji;
+  document.getElementById('phase-badge').textContent = d.phase;
+
+  const app = document.getElementById('app');
+  app.className = `h-full w-full overflow-auto wallpaper-bg distortion-${Math.min(Math.floor(state.day / 7) + 1, 3)}`;
+
+  const nc = document.getElementById('narrative-content');
+  nc.innerHTML = d.narrative.map((p, i) => `<p class="narrative-text fade-in-word" style="animation-delay: ${i * 0.15}s">${p}</p>`).join('');
+
+  const highlight = document.getElementById('scene-highlight');
+  if (d.highlight) {
+    highlight.classList.remove('hidden');
+    document.getElementById('highlight-text').textContent = `"${d.highlight}"`;
+  } else {
+    highlight.classList.add('hidden');
+  }
+
+  const womanHint = document.getElementById('woman-hint');
+  if (d.phase === 'Night' && state.day >= 1) {
+    womanHint.classList.remove('hidden');
+    document.getElementById('woman-text').textContent = d.womanText || '... there is a strange movement in the pattern...';
+  } else {
+    womanHint.classList.add('hidden');
+  }
+
+  document.getElementById('sentence-a').textContent = d.sentenceA;
+  document.getElementById('sentence-b').textContent = d.sentenceB;
+
+  const tc = document.getElementById('transition-choices');
+  tc.innerHTML = d.choices.map(c =>
+    `<button onclick="selectTransition('${c.type}', ${c.correct}, this)" class="transition-btn" title="Type: ${c.type}">${c.word}</button>`
+  ).join('');
+
+  // Reset feedback and continue button
+  const fb = document.getElementById('feedback');
+  fb.classList.add('hidden');
+  fb.innerHTML = '';
+  document.getElementById('continue-btn').classList.add('hidden');
+}
+
+function selectTransition(type, correct, btn) {
+  const d = days[state.day];
+  const fb = document.getElementById('feedback');
+  const btns = document.querySelectorAll('#transition-choices button');
+  const app = document.getElementById('app');
+
+  // Disable all buttons
+  btns.forEach(b => b.disabled = true);
+
+  if (correct) {
+    state.insights++;
+    btn.classList.add('correct-glow');
+
+    let evidenceUnlocked = null;
+    for (let i = 0; i < evidenceConditions.length; i++) {
+      if (evidenceConditions[i].dayIndex === state.day && !state.evidenceUnlocked.includes(i)) {
+        evidenceUnlocked = i;
+        state.evidenceUnlocked.push(i);
+        break;
+      }
+    }
+
+    let feedbackHTML = `<p style="color: #86efac; font-weight: bold;">✓ CORRECT</p><p style="color: #86efac; margin-top: 8px;">${d.correctFeedback}</p>`;
+
+    if (evidenceUnlocked !== null) {
+      feedbackHTML += `
+        <div style="margin-top: 12px; padding: 12px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(139, 92, 246, 0.3)); border: 2px solid rgba(168, 85, 247, 0.6); border-radius: 6px;">
+          <p style="color: #ffc851; font-weight: bold; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">⚡ EVIDENCE UNLOCKED!</p>
+          <p style="color: #e0d5ff; margin: 0; font-size: 14px; line-height: 1.6;">"${evidenceStatements[evidenceUnlocked]}"</p>
+        </div>`;
+    }
+
+    fb.innerHTML = feedbackHTML;
+    fb.style.background = 'rgba(34, 197, 94, 0.15)';
+    fb.style.borderColor = 'rgba(34, 197, 94, 0.6)';
+
+  } else {
+    const sus = d.suspicionOnWrong[type] || 5;
+    state.suspicion = Math.min(100, state.suspicion + sus);
+    btn.classList.add('wrong-shake');
+
+    const consequence = narrativeConsequences[Math.floor(Math.random() * narrativeConsequences.length)];
+    const wrongMsg = d.wrongFeedback[type] || 'That transition doesn\'t fit the logical relationship here.';
+
+    fb.innerHTML = `
+      <p style="color: #fca5a5; font-weight: bold;">✗ WRONG — Suspicion rises by ${sus}%</p>
+      <div style="margin-top: 12px; padding: 12px; background: rgba(220, 38, 38, 0.2); border-left: 3px solid #dc2626; border-radius: 4px;">
+        <p style="color: #ffc851; font-weight: bold; margin: 0 0 8px 0;">⚠ ${consequence.title}</p>
+        <p style="color: #f5e6d3; margin: 0 0 10px 0; line-height: 1.6; font-style: italic;">"${consequence.event}"</p>
+        <p style="color: #d8b4fe; margin: 0; font-size: 12px;">📚 <strong>Literary Understanding:</strong> ${consequence.lesson}</p>
+      </div>
+      <p style="color: #fca5a5; margin-top: 12px;">${wrongMsg}</p>`;
+
+    fb.style.background = 'rgba(220, 38, 38, 0.15)';
+    fb.style.borderColor = 'rgba(220, 38, 38, 0.6)';
+
+    if (state.suspicion >= 80) {
+      app.style.filter = 'brightness(0.85) hue-rotate(15deg)';
+    } else if (state.suspicion >= 50) {
+      app.style.filter = 'brightness(0.9)';
+    }
+  }
+
+  // Show feedback and continue button — THIS was the broken part
+  fb.classList.remove('hidden');
+  updateHUD();
+  document.getElementById('continue-btn').classList.remove('hidden');
+}
+
+function updateHUD() {
+  document.getElementById('suspicion-bar').style.width = state.suspicion + '%';
+  document.getElementById('suspicion-val').textContent = state.suspicion;
+  document.getElementById('insight-val').textContent = state.evidenceUnlocked.length;
+}
+
+function advanceDay() {
+  // Check if this completed day triggers a journal reflection
+  if (journalPrompts[state.day]) {
+    showJournalScreen(state.day);
+  } else {
+    moveToNextDay();
+  }
+}
+
+function showJournalScreen(dayIndex) {
+  const entry = journalPrompts[dayIndex];
+  document.getElementById('screen-game').classList.add('hidden');
+  document.getElementById('screen-journal').classList.remove('hidden');
+  document.getElementById('journal-day-label').textContent = entry.label;
+  document.getElementById('journal-prompt-text').textContent = entry.prompt;
+  document.getElementById('journal-textarea').value = '';
+  document.getElementById('char-count').textContent = '0';
+  lucide.createIcons();
+}
+
+function updateCharCount(el) {
+  document.getElementById('char-count').textContent = el.value.length;
+}
+
+function submitReflection(skip) {
+  const dayIndex = state.day;
+  const text = document.getElementById('journal-textarea').value.trim();
+  if (!skip && text.length > 0) {
+    state.reflections[dayIndex] = {
+      prompt: journalPrompts[dayIndex].prompt,
+      label: journalPrompts[dayIndex].label,
+      text: text
+    };
+  } else if (skip) {
+    // Record skipped but don't store text
+    state.reflections[dayIndex] = null;
+  }
+  document.getElementById('screen-journal').classList.add('hidden');
+  moveToNextDay();
+}
+
+function moveToNextDay() {
+  state.day++;
+  if (state.day >= days.length || state.suspicion >= 100) {
+    endGame();
+  } else {
+    document.getElementById('screen-game').classList.remove('hidden');
+    loadDay();
+  }
+}
+
+function endGame() {
+  document.getElementById('screen-game').classList.add('hidden');
+  document.getElementById('screen-end').classList.remove('hidden');
+  document.getElementById('app').className = 'h-full w-full overflow-auto wallpaper-bg distortion-3';
+
+  let endingText, endingEmoji;
+  if (state.suspicion >= 100) {
+    endingText = 'John discovered the journal. She remains trapped, silenced by his authority.';
+    endingEmoji = '🔒';
+  } else if (state.evidenceUnlocked.length >= 4) {
+    endingText = 'She tore down the wallpaper. The writing survived. Through her defiance, generations understood.';
+    endingEmoji = '✨';
+  } else if (state.evidenceUnlocked.length >= 2) {
+    endingText = 'She escaped the pattern—whether into madness or freedom, the world may never know.';
+    endingEmoji = '🌙';
+  } else {
+    endingText = 'The pattern consumed her. She could not find the words to save herself.';
+    endingEmoji = '🖼️';
+  }
+
+  const evidenceDisplay = state.evidenceUnlocked.length > 0
+    ? state.evidenceUnlocked.map((idx, order) => `
+        <div style="margin-bottom: 12px; padding: 10px; background: rgba(168, 85, 247, 0.15); border-left: 3px solid rgba(168, 85, 247, 0.6); border-radius: 4px;">
+          <p style="margin: 0; color: #d8b4fe; font-size: 12px; font-weight: bold;">Evidence ${order + 1}</p>
+          <p style="margin: 6px 0 0 0; color: #e0d5ff; font-size: 13px; line-height: 1.5;">"${evidenceStatements[idx]}"</p>
+        </div>`).join('')
+    : '<p style="color: #c9a572; margin: 0; font-size: 12px;">No evidence collected...</p>';
+
+  // Build reflections display
+  const reflectionKeys = Object.keys(state.reflections).filter(k => state.reflections[k] !== null && state.reflections[k].text);
+  let reflectionsDisplay = '';
+  if (reflectionKeys.length > 0) {
+    reflectionsDisplay = `
+      <div style="margin-top: 28px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+          <span style="font-size: 20px;">🪶</span>
+          <p style="color: #ffc851; font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Your Secret Journal</p>
+        </div>
+        ${reflectionKeys.map(k => {
+          const r = state.reflections[k];
+          return `<div class="reflection-entry">
+            <p class="reflection-entry-prompt">"${r.prompt}"</p>
+            <p class="reflection-entry-text">${r.text.replace(/\n/g, '<br>')}</p>
+          </div>`;
+        }).join('')}
+      </div>`;
+  } else {
+    reflectionsDisplay = `
+      <div style="margin-top: 28px; padding: 16px; background: rgba(250, 190, 80, 0.04); border: 1px dashed rgba(250, 190, 80, 0.2); border-radius: 6px; text-align: center;">
+        <p style="color: #c9a572; font-family: 'IM Fell English', serif; font-style: italic; font-size: 14px; margin: 0;">No journal entries were written on this journey.</p>
+      </div>`;
+  }
+
+  document.getElementById('end-stats').innerHTML = `
+    <div class="text-lg mb-4"><strong>Evidence Collected:</strong> ${state.evidenceUnlocked.length} / 5</div>
+    <div class="text-lg mb-4"><strong>Suspicion Level:</strong> ${state.suspicion}%</div>
+    <div class="text-lg mb-4"><strong>Transition Words Mastered:</strong> ${Math.floor(state.evidenceUnlocked.length * 20)}%</div>
+    <div style="margin: 12px 0; padding: 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px;">
+      <p style="color: #d8b4fe; font-size: 12px; font-weight: bold; margin: 0 0 10px 0; text-transform: uppercase;">📋 Your Investigation Uncovered:</p>
+      ${evidenceDisplay}
+    </div>
+    <div class="text-lg border-t border-yellow-600/30 pt-4 mt-4" style="color: #ffc851;"><em>${endingEmoji} ${endingText}</em></div>
+    ${reflectionsDisplay}`;
+
+  lucide.createIcons();
+}
+
+function resetGame() {
+  state = { day: 0, suspicion: 0, insights: 0, completed: false, evidenceUnlocked: [], reflections: {} };
+  document.getElementById('screen-end').classList.add('hidden');
+  document.getElementById('screen-journal').classList.add('hidden');
+  document.getElementById('screen-title').classList.remove('hidden');
+  document.getElementById('app').className = 'h-full w-full overflow-auto wallpaper-bg';
+  document.getElementById('app').style.filter = '';
+  lucide.createIcons();
+}
+
+lucide.createIcons();
+  </script>
+ </body>
+</html>
