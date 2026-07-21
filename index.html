@@ -13,11 +13,27 @@
 </head>
 
 <body class="h-full">
+  <svg width="0" height="0" style="position: absolute;">
+    <filter id="luminance-to-alpha">
+      <feColorMatrix type="luminanceToAlpha" />
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="1 1 0 0" />
+      </feComponentTransfer>
+    </filter>
+  </svg>
+
   <div id="app" class="h-full w-full relative">
+    <audio id="bg-audio" preload="auto"></audio>
+
     <div id="wallpaper-wrapper" style="position: fixed; inset: 0; overflow: hidden; z-index: 0; pointer-events: none;">
       <div id="wallpaper-layer" class="wallpaper-bg" style="position: absolute; inset: -5%; width: 110%; height: 110%;">
       </div>
+
+      <div id="day-video-layer" class="day-video-layer">
+        <video id="day-video" muted playsinline preload="auto"></video>
+      </div>
     </div>
+
     <div id="content-layer" class="relative z-10" style="min-height: 100%;">
 
       <!-- Author Intro Screen -->
@@ -37,7 +53,8 @@
             writer, feminist, and social reformer</p>
           <div class="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-600/40 to-transparent mx-auto my-8"></div>
           <div class="card-glass p-8 rounded-lg mb-10">
-            <h3 class="display-font secondary-header mb-6" style="color: #ffc851;">Charlotte's Life: A Story of Survival
+            <h3 class="display-font secondary-header mb-6" style="color: #ffc851;">Charlotte's Life: A Story of
+              Survival
             </h3>
             <div class="space-y-4 prose-font text-content leading-relaxed" style="color: #d4a574;">
               <p><strong style="color: #ffc851;">1860:</strong> Born in Hartford, Connecticut. Her family was
@@ -55,10 +72,12 @@
                 actually read it—and reportedly <strong>changed his treatment methods.</strong> The story became a
                 weapon against the very system that nearly destroyed her.</p>
               <p><strong style="color: #ffc851;">1893–1935:</strong> She became a leading feminist thinker, published
-                200+ works, lectured internationally on women's independence, economics, and labor. She proved her mind
+                200+ works, lectured internationally on women's independence, economics, and labor. She proved her
+                mind
                 was powerful, not weak.</p>
               <p style="font-style: italic; border-top: 1px solid rgba(250, 190, 80, 0.3); padding-top: 16px;"><strong
-                  style="color: #ffc851;">Why This Matters:</strong> Gilman's defiance—her refusal to accept silencing,
+                  style="color: #ffc851;">Why This Matters:</strong> Gilman's defiance—her refusal to accept
+                silencing,
                 her act of writing despite prohibition—saved not just herself but transformed medicine and society's
                 understanding of women's minds.</p>
             </div>
@@ -68,7 +87,8 @@
               <div class="flex gap-4">
                 <div class="text-4xl">📚</div>
                 <div>
-                  <h3 class="display-font tertiary-header mb-2" style="color: #ffc851;">The Story Behind the Story</h3>
+                  <h3 class="display-font tertiary-header mb-2" style="color: #ffc851;">The Story Behind the Story
+                  </h3>
                   <p class="prose-font text-content leading-relaxed" style="color: #d4a574;">After struggling with
                     postpartum depression, Gilman sought treatment from Dr. Silas Weir Mitchell, a famous neurologist
                     who prescribed the "Rest Cure"—complete bed rest, isolation, and no intellectual stimulation.</p>
@@ -80,7 +100,8 @@
                 <div class="text-4xl">💔</div>
                 <div>
                   <h3 class="display-font tertiary-header mb-2" style="color: #ffc851;">The Treatment That Harmed</h3>
-                  <p class="prose-font text-content leading-relaxed" style="color: #d4a574;">The "cure" made her worse.
+                  <p class="prose-font text-content leading-relaxed" style="color: #d4a574;">The "cure" made her
+                    worse.
                     Forbidden to write, read deeply, or engage her mind, Gilman felt herself disappearing. She wrote
                     "The Yellow Wallpaper" to expose the cruelty hidden within medical authority and patriarchal
                     control.</p>
@@ -99,7 +120,8 @@
               </div>
             </div>
           </div>
-          <p class="prose-font text-content text-center italic mb-8" style="color: #d4a574;">Now step into the story and
+          <p class="prose-font text-content text-center italic mb-8" style="color: #d4a574;">Now step into the story
+            and
             experience her struggle. Every choice reveals the hidden dynamics of control, defiance, and the search for
             freedom.</p>
           <div class="text-center">
@@ -163,7 +185,8 @@
           <div id="narrative-panel" class="flex-1 card-glass rounded-lg p-8">
             <div class="prose-font mb-2 uppercase tracking-widest" style="color: #c9a572; font-size: 12px;">Day <span
                 id="day-num-title">1</span></div>
-            <h2 id="day-title" class="display-font secondary-header mb-8" style="color: #ffc851;">The Prescription</h2>
+            <h2 id="day-title" class="display-font secondary-header mb-8" style="color: #ffc851;">The Prescription
+            </h2>
             <div class="room-visual" id="room-visual">🏠</div>
             <div id="narrative-content" class="space-y-4"></div>
             <div id="scene-highlight" class="mt-6 p-4 rounded border-l-4 border-amber-500/60 bg-amber-500/10 hidden">
@@ -219,7 +242,8 @@
                 id="journal-day-label">Day 5 — Secret Journal</span>
             </div>
             <h2 class="display-font secondary-header mb-1" style="color: #ffc851;">A Moment Alone</h2>
-            <p class="journal-font text-sm mb-6" style="color: #c9a572; font-style: italic;">John is away. Write freely.
+            <p class="journal-font text-sm mb-6" style="color: #c9a572; font-style: italic;">John is away. Write
+              freely.
               No one will see this.</p>
             <div class="quill-divider">✦ reflection ✦</div>
             <p class="prose-font text-content mb-5" id="journal-prompt-text" style="color: #f5e6d3; line-height: 1.75;">
@@ -242,7 +266,8 @@
         <div class="max-w-2xl">
           <div class="mb-8 room-visual" style="font-size: 64px;">✨</div>
           <h2 class="display-font primary-title mb-4" style="color: #ffc851;">She is free.</h2>
-          <p class="journal-font italic text-xl mb-8" style="color: #d4a574; font-size: 20px;">"I've got out at last...
+          <p class="journal-font italic text-xl mb-8" style="color: #d4a574; font-size: 20px;">"I've got out at
+            last...
             And I've pulled off most of the paper, so you can't put me back!"</p>
           <div class="card-glass rounded-lg p-8 mb-8 text-left">
             <div id="end-stats" class="prose-font space-y-3" style="color: #d4a574;"></div>
