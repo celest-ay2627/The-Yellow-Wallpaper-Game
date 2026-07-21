@@ -8,7 +8,7 @@ const days = [
       'The wallpaper has a recurrent spot where the pattern lolls like a broken neck. Two bulbous eyes stare upside down.'
     ],
     sentenceA: 'John laughs at me about this wallpaper.',
-    sentenceB: 'He says that nothing is worse for a nervous patient than to give way to such fancies.',
+    sentenceB: '... he says that nothing is worse for a nervous patient than to give way to such fancies.',
     choices: [
       { word: 'Furthermore', type: 'additive', correct: false },
       { word: 'Consequently', type: 'causal', correct: true },
@@ -28,17 +28,17 @@ const days = [
       'Behind the pattern, a woman. She crawls. She creeps.',
       'By day she is trapped. By night, I see her more clearly—or do I? Is she real, or am I the woman?'
     ],
-    sentenceA: 'I have locked the door.',
-    sentenceB: 'John must not know I am watching the pattern at night.',
+    sentenceA: 'I have locked the door...',
+    sentenceB: '... John must not know I am watching the pattern at night.',
     choices: [
-      { word: 'Because', type: 'causal', correct: true },
-      { word: 'Although', type: 'adversative', correct: false },
-      { word: 'Similarly', type: 'comparative', correct: false },
-      { word: 'Nonetheless', type: 'adversative', correct: false },
-      { word: 'As a result', type: 'causal-reversed', correct: false }
+      { word: 'because', type: 'causal', correct: true },
+      { word: 'although', type: 'adversative', correct: false },
+      { word: 'similarly', type: 'comparative', correct: false },
+      { word: 'nonetheless', type: 'adversative', correct: false },
+      { word: 'as a result', type: 'causal-reversed', correct: false }
     ],
     correctFeedback: '✧ CAUSAL: She locks the door BECAUSE she must hide her awakening. The secret journal begins.',
-    wrongFeedback: { 'adversative': '"Although/Nonetheless" suggest contradiction — she\'s explaining cause, not contrast.', 'comparative': '"Similarly" compares two things — these are cause and effect.', 'causal-reversed': '"As a result" reverses the logic — locking comes BEFORE hiding, not after.' },
+    wrongFeedback: { 'adversative': '"although/nonetheless" suggest contradiction — she\'s explaining cause, not contrast.', 'comparative': '"similarly" compares two things — these are cause and effect.', 'causal-reversed': '"as a result" reverses the logic — locking comes BEFORE hiding, not after.' },
     suspicionOnWrong: { 'adversative': 12, 'comparative': 10, 'causal-reversed': 20 },
     womanText: '... there is a strange movement in the pattern...'
   },
@@ -50,17 +50,17 @@ const days = [
       'She cannot stop staring at it. The pattern has her now.',
       'His eyes narrow. He does not understand. Or worse—he understands too well.'
     ],
-    sentenceA: 'I tell him I am fine, that it is merely a pattern.',
-    sentenceB: 'He studies me with concern, then returns to his medical journals.',
+    sentenceA: 'I tell him I am fine, that it is merely a pattern...',
+    sentenceB: '... he studies me with concern, then returns to his medical journals.',
     choices: [
-      { word: 'But', type: 'adversative', correct: true },
-      { word: 'Also', type: 'additive', correct: false },
-      { word: 'However', type: 'adversative-weak', correct: false },
-      { word: 'Then', type: 'temporal', correct: false },
-      { word: 'Certainly', type: 'emphatic', correct: false }
+      { word: 'but', type: 'adversative', correct: true },
+      { word: 'also', type: 'additive', correct: false },
+      { word: 'however', type: 'adversative-weak', correct: false },
+      { word: 'then', type: 'temporal', correct: false },
+      { word: 'certainly', type: 'emphatic', correct: false }
     ],
-    correctFeedback: '✧ ADVERSATIVE: "But" shows the contradiction—she lies to him, yet he senses it anyway.',
-    wrongFeedback: { 'additive': '"Also" adds information, but she\'s creating a contrast (lie vs. truth).', 'adversative-weak': '"However" works but is weaker than "But" — the immediate contradiction matters.', 'temporal': '"Then" suggests sequence, not the opposition between her words and his perception.', 'emphatic': '"Certainly" affirms but doesn\'t show contrast.' },
+    correctFeedback: '✧ ADVERSATIVE: "but" shows the contradiction—she lies to him, yet he senses it anyway.',
+    wrongFeedback: { 'additive': '"also" adds information, but she\'s creating a contrast (lie vs. truth).', 'adversative-weak': '"however" works but is weaker than "but" — the immediate contradiction matters.', 'temporal': '"then" suggests sequence, not the opposition between her words and his perception.', 'emphatic': '"certainly" affirms but doesn\'t show contrast.' },
     suspicionOnWrong: { 'additive': 18, 'adversative-weak': 8, 'temporal': 15, 'emphatic': 10 }
   },
   {
@@ -72,7 +72,7 @@ const days = [
       'She crawls. Round and round. Round and round. Just like I crawl through this house. Round and round in circles.'
     ],
     sentenceA: 'The pattern imprisons her.',
-    sentenceB: 'The pattern imprisons ME.',
+    sentenceB: '... the pattern imprisons ME.',
     choices: [
       { word: 'In the same way', type: 'comparative', correct: true },
       { word: 'Furthermore', type: 'additive', correct: false },
@@ -93,17 +93,17 @@ const days = [
       '"Your condition worsens because you insist on these fancies," he says.',
       'She knows better than to argue with a man of medicine.'
     ],
-    sentenceA: 'I tried to explain my observations to him.',
-    sentenceB: 'He dismissed every word as symptom of hysteria.',
+    sentenceA: 'I tried to explain my observations to him...',
+    sentenceB: '... he dismissed every word as symptom of hysteria.',
     choices: [
-      { word: 'Yet', type: 'adversative', correct: true },
-      { word: 'Therefore', type: 'causal', correct: false },
-      { word: 'Moreover', type: 'additive', correct: false },
-      { word: 'Afterward', type: 'temporal', correct: false },
-      { word: 'Plainly', type: 'emphatic', correct: false }
+      { word: 'yet', type: 'adversative', correct: true },
+      { word: 'therefore', type: 'causal', correct: false },
+      { word: 'moreover', type: 'additive', correct: false },
+      { word: 'afterward', type: 'temporal', correct: false },
+      { word: 'plainly', type: 'emphatic', correct: false }
     ],
-    correctFeedback: '✧ ADVERSATIVE: "Yet" emphasizes the cruel irony—she speaks truth; he calls it disease.',
-    wrongFeedback: { 'causal': '"Therefore" suggests she spoke BECAUSE he dismissed—wrong order.', 'additive': '"Moreover" adds but doesn\'t show the contradiction.', 'temporal': '"Afterward" suggests sequence, not opposition.', 'emphatic': '"Plainly" states but doesn\'t show the clash between her reality and his dismissal.' },
+    correctFeedback: '✧ ADVERSATIVE: "yet" emphasizes the cruel irony—she speaks truth; he calls it disease.',
+    wrongFeedback: { 'causal': '"therefore" suggests she spoke BECAUSE he dismissed—wrong order.', 'additive': '"moreover" adds but doesn\'t show the contradiction.', 'temporal': '"afterward" suggests sequence, not opposition.', 'emphatic': '"plainly" states but doesn\'t show the clash between her reality and his dismissal.' },
     suspicionOnWrong: { 'causal': 18, 'additive': 8, 'temporal': 12, 'emphatic': 6 }
   },
   {
@@ -115,7 +115,7 @@ const days = [
       'And I—I understand her desperation as if it were my own breathing.'
     ],
     sentenceA: 'The woman moves with intention.',
-    sentenceB: 'She is no longer trapped by the pattern—she is trapped by the knowledge that freedom is impossible.',
+    sentenceB: '... she is no longer trapped by the pattern—she is trapped by the knowledge that freedom is impossible.',
     choices: [
       { word: 'Now', type: 'temporal', correct: true },
       { word: 'Similarly', type: 'comparative', correct: false },
@@ -136,17 +136,17 @@ const days = [
       'She writes about the woman. About John. About the cure that cures nothing.',
       'She writes to survive. To remember herself.'
     ],
-    sentenceA: 'My writing is my rebellion.',
-    sentenceB: 'John believes I am resting; I am actually fighting.',
+    sentenceA: 'My writing is my rebellion...',
+    sentenceB: '... John believes I am resting; I am actually fighting.',
     choices: [
-      { word: 'Whereas', type: 'adversative', correct: true },
-      { word: 'Also', type: 'additive', correct: false },
-      { word: 'In fact', type: 'emphatic', correct: false },
-      { word: 'Subsequently', type: 'temporal', correct: false },
-      { word: 'For instance', type: 'example', correct: false }
+      { word: 'whereas', type: 'adversative', correct: true },
+      { word: 'also', type: 'additive', correct: false },
+      { word: 'in fact', type: 'emphatic', correct: false },
+      { word: 'subsequently', type: 'temporal', correct: false },
+      { word: 'for instance', type: 'example', correct: false }
     ],
-    correctFeedback: '✧ ADVERSATIVE: "Whereas" starkly contrasts the illusion (rest) with the truth (defiance).',
-    wrongFeedback: { 'additive': '"Also" adds but doesn\'t show the contrast between appearance and reality.', 'emphatic': '"In fact" emphasizes but doesn\'t show the paradox.', 'temporal': '"Subsequently" suggests sequence, not opposition.', 'example': '"For instance" gives examples, not the stark contrast needed here.' },
+    correctFeedback: '✧ ADVERSATIVE: "whereas" starkly contrasts the illusion (rest) with the truth (defiance).',
+    wrongFeedback: { 'additive': '"also" adds but doesn\'t show the contrast between appearance and reality.', 'emphatic': '"in fact" emphasizes but doesn\'t show the paradox.', 'temporal': '"subsequently" suggests sequence, not opposition.', 'example': '"for instance" gives examples, not the stark contrast needed here.' },
     suspicionOnWrong: { 'additive': 10, 'emphatic': 8, 'temporal': 14, 'example': 6 }
   },
   {
@@ -157,17 +157,17 @@ const days = [
       'We are the same woman, repeated across the pattern infinitely.',
       'Trapped. Creeping. Watching. Waiting for the moment of release.'
     ],
-    sentenceA: 'I see myself in the pattern.',
-    sentenceB: 'I see the woman in myself.',
+    sentenceA: 'I see myself in the pattern...',
+    sentenceB: '... I see the woman in myself.',
     choices: [
-      { word: 'And', type: 'additive', correct: true },
-      { word: 'But', type: 'adversative', correct: false },
-      { word: 'Yet', type: 'adversative2', correct: false },
-      { word: 'So', type: 'causal', correct: false },
-      { word: 'Then', type: 'temporal', correct: false }
+      { word: 'and', type: 'additive', correct: true },
+      { word: 'but', type: 'adversative', correct: false },
+      { word: 'yet', type: 'adversative2', correct: false },
+      { word: 'so', type: 'causal', correct: false },
+      { word: 'then', type: 'temporal', correct: false }
     ],
-    correctFeedback: '✧ ADDITIVE: "And" connects the two halves of her fractured self. She is becoming one with the pattern.',
-    wrongFeedback: { 'adversative': '"But" suggests opposition, but she\'s merging, not contrasting.', 'adversative2': '"Yet" suggests opposition, but she\'s merging, not contrasting.', 'causal': '"So" implies causality, but this is simultaneous revelation.', 'temporal': '"Then" marks sequence, but these realizations happen at once.' },
+    correctFeedback: '✧ ADDITIVE: "and" connects the two halves of her fractured self. She is becoming one with the pattern.',
+    wrongFeedback: { 'adversative': '"but" suggests opposition, but she\'s merging, not contrasting.', 'adversative2': '"yet" suggests opposition, but she\'s merging, not contrasting.', 'causal': '"so" implies causality, but this is simultaneous revelation.', 'temporal': '"then" marks sequence, but these realizations happen at once.' },
     suspicionOnWrong: { 'adversative': 9, 'adversative2': 9, 'causal': 11, 'temporal': 8 },
     womanText: '... we are the same. We are one...'
   },
@@ -179,17 +179,17 @@ const days = [
       '"You are getting worse," he says, alarmed. His concern feels like a cage.',
       'His doctor\'s eyes study her as if she is a specimen, not a person.'
     ],
-    sentenceA: 'John insists the cure is working.',
-    sentenceB: 'She grows stranger every day.',
+    sentenceA: 'John insists the cure is working...',
+    sentenceB: '... she grows stranger every day.',
     choices: [
-      { word: 'Yet', type: 'adversative', correct: true },
-      { word: 'Moreover', type: 'additive', correct: false },
-      { word: 'Because', type: 'causal', correct: false },
-      { word: 'Thus', type: 'causal2', correct: false },
-      { word: 'Later', type: 'temporal', correct: false }
+      { word: 'yet', type: 'adversative', correct: true },
+      { word: 'moreover', type: 'additive', correct: false },
+      { word: 'because', type: 'causal', correct: false },
+      { word: 'thus', type: 'causal2', correct: false },
+      { word: 'later', type: 'temporal', correct: false }
     ],
-    correctFeedback: '✧ ADVERSATIVE: "Yet" exposes the paradox—his "cure" and her deterioration happen together.',
-    wrongFeedback: { 'additive': '"Moreover" adds information but misses the contradiction.', 'causal': '"Because" suggests cause, but these are simultaneous contradictions.', 'causal2': '"Thus" suggests consequence, but these are simultaneous contradictions.', 'temporal': '"Later" marks sequence, not irony.' },
+    correctFeedback: '✧ ADVERSATIVE: "yet" exposes the paradox—his "cure" and her deterioration happen together.',
+    wrongFeedback: { 'additive': '"moreover" adds information but misses the contradiction.', 'causal': '"because" suggests cause, but these are simultaneous contradictions.', 'causal2': '"thus" suggests consequence, but these are simultaneous contradictions.', 'temporal': '"later" marks sequence, not irony.' },
     suspicionOnWrong: { 'additive': 12, 'causal': 15, 'causal2': 15, 'temporal': 10 }
   },
   {
@@ -201,7 +201,7 @@ const days = [
       'She is free—or at least, she is no longer contained by the pattern\'s geometry.'
     ],
     sentenceA: 'The woman escapes the pattern\'s grip.',
-    sentenceB: 'The pattern\'s hold on me strengthens.',
+    sentenceB: '... the pattern\'s hold on me strengthens.',
     choices: [
       { word: 'Conversely', type: 'adversative', correct: true },
       { word: 'Likewise', type: 'comparative', correct: false },
@@ -223,7 +223,7 @@ const days = [
       'They discuss her "nerves" as if she is not in the room.'
     ],
     sentenceA: 'The doctors prescribe more rest, more isolation.',
-    sentenceB: 'She grows weaker by the hour.',
+    sentenceB: '... she grows weaker by the hour.',
     choices: [
       { word: 'As a result', type: 'causal', correct: true },
       { word: 'However', type: 'adversative', correct: false },
@@ -244,7 +244,7 @@ const days = [
       'Or is the woman me? Are we the same body, split across the pattern?'
     ],
     sentenceA: 'I am trapped in the wallpaper.',
-    sentenceB: 'The woman is trapped in me.',
+    sentenceB: '... the woman is trapped in me.',
     choices: [
       { word: 'At the same time', type: 'additive', correct: true },
       { word: 'On the other hand', type: 'adversative', correct: false },
@@ -266,7 +266,7 @@ const days = [
       'The cure was always a cage. Now he threatens a larger cage.'
     ],
     sentenceA: 'The Rest Cure was supposed to heal me.',
-    sentenceB: 'It has destroyed everything—my mind, my body, my sense of reality.',
+    sentenceB: '... it has destroyed everything—my mind, my body, my sense of reality.',
     choices: [
       { word: 'Instead', type: 'adversative', correct: true },
       { word: 'As well', type: 'additive', correct: false },
@@ -287,7 +287,7 @@ const days = [
       'And I realize: she is me, and I am her, and we are BOTH trapped.'
     ],
     sentenceA: 'I begin to understand the woman\'s desperation.',
-    sentenceB: 'I begin to understand my own.',
+    sentenceB: '... I begin to understand my own.',
     choices: [
       { word: 'More precisely', type: 'reformulative', correct: true },
       { word: 'Similarly', type: 'comparative', correct: false },
@@ -309,7 +309,7 @@ const days = [
       'There must be a way out. There HAS to be a way out.'
     ],
     sentenceA: 'I have been compliant for weeks.',
-    sentenceB: 'My mind has been planning my escape.',
+    sentenceB: '... my mind has been planning my escape.',
     choices: [
       { word: 'Meanwhile', type: 'temporal', correct: true },
       { word: 'Moreover', type: 'additive', correct: false },
@@ -329,17 +329,17 @@ const days = [
       'She has been there all along—trapped by the pattern, just as I have been trapped by John, by medicine, by society.',
       'She is creeping now. She is READY.'
     ],
-    sentenceA: 'The woman moves with purpose now.',
-    sentenceB: 'I move with purpose now.',
+    sentenceA: 'The woman moves with purpose now...',
+    sentenceB: '... I move with purpose now.',
     choices: [
-      { word: 'Just as', type: 'comparative', correct: true },
-      { word: 'In addition', type: 'additive', correct: false },
-      { word: 'Yet', type: 'adversative', correct: false },
-      { word: 'Because', type: 'causal', correct: false },
-      { word: 'Before long', type: 'temporal', correct: false }
+      { word: 'just as', type: 'comparative', correct: true },
+      { word: 'in addition', type: 'additive', correct: false },
+      { word: 'yet', type: 'adversative', correct: false },
+      { word: 'because', type: 'causal', correct: false },
+      { word: 'before long', type: 'temporal', correct: false }
     ],
-    correctFeedback: '✧ COMPARATIVE: "Just as" equates them—narrator and woman are not separate; they move as one consciousness.',
-    wrongFeedback: { 'additive': '"In addition" adds separate facts, but they are the same entity.', 'adversative': '"Yet" creates opposition, but she\'s recognizing unity.', 'causal': '"Because" suggests reason, but this is simultaneity.', 'temporal': '"Before long" marks timing, not identity.' },
+    correctFeedback: '✧ COMPARATIVE: "just as" equates them—narrator and woman are not separate; they move as one consciousness.',
+    wrongFeedback: { 'additive': '"in addition" adds separate facts, but they are the same entity.', 'adversative': '"yet" creates opposition, but she\'s recognizing unity.', 'causal': '"because" suggests reason, but this is simultaneity.', 'temporal': '"before long" marks timing, not identity.' },
     suspicionOnWrong: { 'additive': 11, 'adversative': 9, 'causal': 13, 'temporal': 12 },
     womanText: '... we are the same breath now...'
   },
@@ -351,17 +351,17 @@ const days = [
       'She no longer pretends to rest.',
       'She stands at the wallpaper and tears. Her hands bleeding. Her mind finally FREE.'
     ],
-    sentenceA: 'John orders me to stop this behavior.',
-    sentenceB: 'I cannot stop. I will not stop. I must tear down the wallpaper.',
+    sentenceA: 'John orders me to stop this behavior...',
+    sentenceB: '... I cannot stop. I will not stop. I must tear down the wallpaper.',
     choices: [
-      { word: 'Yet', type: 'adversative', correct: true },
-      { word: 'Also', type: 'additive', correct: false },
-      { word: 'Therefore', type: 'causal', correct: false },
-      { word: 'Later', type: 'temporal', correct: false },
-      { word: 'Clearly', type: 'emphatic', correct: false }
+      { word: 'yet', type: 'adversative', correct: true },
+      { word: 'also', type: 'additive', correct: false },
+      { word: 'therefore', type: 'causal', correct: false },
+      { word: 'later', type: 'temporal', correct: false },
+      { word: 'clearly', type: 'emphatic', correct: false }
     ],
-    correctFeedback: '✧ ADVERSATIVE: "Yet" captures her defiance—his command cannot stop her now. She has finally claimed agency.',
-    wrongFeedback: { 'additive': '"Also" adds another fact, but this is rebellion against his authority.', 'causal': '"Therefore" suggests consequence, but this is pure defiance.', 'temporal': '"Later" marks time, not opposition.', 'emphatic': '"Clearly" affirms but doesn\'t show the clash.' },
+    correctFeedback: '✧ ADVERSATIVE: "yet" captures her defiance—his command cannot stop her now. She has finally claimed agency.',
+    wrongFeedback: { 'additive': '"also" adds another fact, but this is rebellion against his authority.', 'causal': '"therefore" suggests consequence, but this is pure defiance.', 'temporal': '"later" marks time, not opposition.', 'emphatic': '"clearly" affirms but doesn\'t show the clash.' },
     suspicionOnWrong: { 'additive': 15, 'causal': 14, 'temporal': 11, 'emphatic': 9 }
   },
   {
@@ -374,7 +374,7 @@ const days = [
       'They are the same body. The same mind. The same SCREAM.'
     ],
     sentenceA: 'The woman crawls across the floor.',
-    sentenceB: 'She does so because she has finally escaped the pattern.',
+    sentenceB: '... she does so because she has finally escaped the pattern.',
     choices: [
       { word: 'In fact', type: 'emphatic', correct: true },
       { word: 'Although', type: 'adversative', correct: false },
@@ -395,17 +395,17 @@ const days = [
       'John enters.',
       'He sees the shredded wallpaper. He sees her crawling. He sees his cure—his authority—crumbled to dust.'
     ],
-    sentenceA: 'John stares in horror at the wallpaper I have destroyed.',
-    sentenceB: 'He cannot comprehend that I have reclaimed my freedom.',
+    sentenceA: 'John stares in horror at the wallpaper I have destroyed...',
+    sentenceB: '... he cannot comprehend that I have reclaimed my freedom.',
     choices: [
-      { word: 'Because', type: 'causal', correct: true },
-      { word: 'Although', type: 'adversative', correct: false },
-      { word: 'Moreover', type: 'additive', correct: false },
-      { word: 'Subsequently', type: 'temporal', correct: false },
-      { word: 'Conversely', type: 'adversative2', correct: false }
+      { word: 'because', type: 'causal', correct: true },
+      { word: 'although', type: 'adversative', correct: false },
+      { word: 'moreover', type: 'additive', correct: false },
+      { word: 'subsequently', type: 'temporal', correct: false },
+      { word: 'conversely', type: 'adversative2', correct: false }
     ],
-    correctFeedback: '✧ CAUSAL: "Because" connects his horror to his incomprehension—he cannot fathom her agency because it contradicts his control.',
-    wrongFeedback: { 'adversative': '"Although" creates false opposition; his horror CAUSES his incomprehension.', 'additive': '"Moreover" adds, but this is cause-effect.', 'temporal': '"Subsequently" marks time, not causation.', 'adversative2': '"Conversely" reverses, but one causes the other.' },
+    correctFeedback: '✧ CAUSAL: "because" connects his horror to his incomprehension—he cannot fathom her agency because it contradicts his control.',
+    wrongFeedback: { 'adversative': '"although" creates false opposition; his horror CAUSES his incomprehension.', 'additive': '"moreover" adds, but this is cause-effect.', 'temporal': '"subsequently" marks time, not causation.', 'adversative2': '"conversely" reverses, but one causes the other.' },
     suspicionOnWrong: { 'adversative': 16, 'additive': 11, 'temporal': 13, 'adversative2': 14 }
   },
   {
@@ -417,7 +417,7 @@ const days = [
       'John faints. His authority collapses. She crawls, free at last—mad, perhaps, but finally SEEN.'
     ],
     sentenceA: 'John loses consciousness at the sight of her liberation.',
-    sentenceB: 'She continues crawling, finally free from the wallpaper, free from his control, free from the cure that was never meant to heal.',
+    sentenceB: '... she continues crawling, finally free from the wallpaper, free from his control, free from the cure that was never meant to heal.',
     choices: [
       { word: 'Meanwhile', type: 'temporal', correct: true },
       { word: 'However', type: 'adversative', correct: false },
@@ -470,7 +470,7 @@ const journalPrompts = {
 
 let state = { day: 0, suspicion: 0, insights: 0, completed: false, evidenceUnlocked: [], reflections: {}, readTimerId: null };
 
-const READ_TIME_SECONDS = 20;
+const READ_TIME_SECONDS = 10; ///////////////////////////////////////////////////////////////////////////////////////
 
 function startReadingTimer() {
   if (state.readTimerId) {
@@ -499,6 +499,7 @@ function startReadingTimer() {
 }
 
 function enterGame() {
+
   document.getElementById('screen-author').classList.add('hidden');
   document.getElementById('screen-title').classList.remove('hidden');
   lucide.createIcons();
@@ -523,11 +524,11 @@ function updateWallpaperDistortion() {
   let levelClass = 'wallpaper-bg';
   if (state.suspicion >= 85) {
     levelClass += ' distortion-intense';
-  } else if (state.suspicion >= 60 || state.day >= 14) {
+  } else if (state.suspicion >= 60) {
     levelClass += ' distortion-3';
-  } else if (state.suspicion >= 30 || state.day >= 7) {
+  } else if (state.suspicion >= 30) {
     levelClass += ' distortion-2';
-  } else if (state.suspicion >= 5 || state.day >= 1) {
+  } else if (state.suspicion >= 5) {
     levelClass += ' distortion-gentle';
   } else {
     levelClass += ' distortion-1';
@@ -548,6 +549,15 @@ function updateWallpaperDistortion() {
   } else {
     wp.style.filter = '';
   }
+}
+
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
 }
 
 function setupDay(d) {
@@ -582,8 +592,10 @@ function setupDay(d) {
   document.getElementById('sentence-a').textContent = d.sentenceA;
   document.getElementById('sentence-b').textContent = d.sentenceB;
 
+  const randomizedChoices = shuffleArray(d.choices);
+
   const tc = document.getElementById('transition-choices');
-  tc.innerHTML = d.choices.map(c =>
+  tc.innerHTML = randomizedChoices.map(c =>
     `<button onclick="selectTransition('${c.type}', ${c.correct}, this)" class="transition-btn" title="Type: ${c.type}">${c.word}</button>`
   ).join('');
 
@@ -593,6 +605,7 @@ function setupDay(d) {
   document.getElementById('continue-btn').classList.add('hidden');
 
   startReadingTimer();
+  showDayVideo(state.day + 1);
 }
 
 function selectTransition(type, correct, btn) {
@@ -670,10 +683,32 @@ function advanceDay() {
   }
 }
 
-function countWords(str) {
+const MIN_WORDS_PER_SENTENCE = 4;
+const MIN_VALID_SENTENCES = 2;
+const MIN_TOTAL_WORDS = 25;
+
+function analyzeSentences(str) {
   const trimmed = str.trim();
-  if (trimmed === '') return 0;
-  return trimmed.split(/\s+/).length;
+  if (trimmed === '') return { validSentences: 0, totalWords: 0, isValid: false };
+
+  // Split on sentence-ending punctuation
+  const candidates = trimmed.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
+
+  let validSentences = 0;
+  let totalWords = 0;
+
+  candidates.forEach(sentence => {
+    // Count real words: alphabetic tokens with 2+ letters (kills single-letter "words" from period-spam)
+    const words = sentence.match(/[A-Za-z']{2,}/g) || [];
+    totalWords += words.length;
+    if (words.length >= MIN_WORDS_PER_SENTENCE) {
+      validSentences++;
+    }
+  });
+
+  const isValid = validSentences >= MIN_VALID_SENTENCES && totalWords >= MIN_TOTAL_WORDS;
+
+  return { validSentences, totalWords, isValid };
 }
 
 function showJournalScreen(dayIndex) {
@@ -686,7 +721,7 @@ function showJournalScreen(dayIndex) {
 
   const wordCountSpan = document.getElementById('char-count');
   if (wordCountSpan) {
-    wordCountSpan.innerHTML = 'Words: <span class="word-counter-warning">0</span> / 50';
+    wordCountSpan.innerHTML = `Sentences: <span class="word-counter-warning">0</span> / ${MIN_VALID_SENTENCES} &nbsp;•&nbsp; Words: <span class="word-counter-warning">0</span> / ${MIN_TOTAL_WORDS}`;
   }
 
   const sealBtn = document.getElementById('seal-btn');
@@ -698,22 +733,25 @@ function showJournalScreen(dayIndex) {
 }
 
 function updateWordCount(el) {
-  const words = countWords(el.value);
-  const wordCountSpan = document.getElementById('char-count');
-  if (wordCountSpan) {
-    wordCountSpan.innerHTML = `Words: <span class="${words < 50 ? 'word-counter-warning' : 'word-counter-success'}">${words}</span> / 50`;
+  const { validSentences, totalWords, isValid } = analyzeSentences(el.value);
+  const counterSpan = document.getElementById('char-count');
+  if (counterSpan) {
+    const sentColor = validSentences >= MIN_VALID_SENTENCES ? 'word-counter-success' : 'word-counter-warning';
+    const wordColor = totalWords >= MIN_TOTAL_WORDS ? 'word-counter-success' : 'word-counter-warning';
+    counterSpan.innerHTML = `Sentences: <span class="${sentColor}">${validSentences}</span> / ${MIN_VALID_SENTENCES} &nbsp;•&nbsp; Words: <span class="${wordColor}">${totalWords}</span> / ${MIN_TOTAL_WORDS}`;
   }
 
   const sealBtn = document.getElementById('seal-btn');
   if (sealBtn) {
-    sealBtn.disabled = words < 50;
+    sealBtn.disabled = !isValid;
   }
 }
 
 function submitReflection() {
   const dayIndex = state.day;
   const text = document.getElementById('journal-textarea').value.trim();
-  if (countWords(text) >= 50) {
+  const { isValid } = analyzeSentences(text);
+  if (isValid) {
     state.reflections[dayIndex] = {
       prompt: journalPrompts[dayIndex].prompt,
       label: journalPrompts[dayIndex].label,
@@ -735,6 +773,8 @@ function moveToNextDay() {
 }
 
 function endGame() {
+  resetDayVideo();
+
   document.getElementById('screen-game').classList.add('hidden');
   document.getElementById('screen-end').classList.remove('hidden');
   const wpEnd = document.getElementById('wallpaper-layer');
@@ -805,7 +845,117 @@ function endGame() {
   lucide.createIcons();
 }
 
+const dayVideoMap = {
+  2: 'walking.mp4',
+  3: 'walking.mp4',
+  4: 'crawling.mp4',
+  5: 'walking.mp4',
+  6: 'tapping.mp4',
+  10: 'ripping.mp4',
+  12: 'multiple.mp4',
+  14: 'tapping.mp4',
+  16: 'walking.mp4',
+  17: 'ripping.mp4',
+  18: 'crawling.mp4',
+  19: 'crawling.mp4',
+  20: 'crawling.mp4',
+};
+
+const VIDEO_APPEAR_DELAY = 3000;   // ms — appears 3s into reading
+const VIDEO_FADE_DURATION = 1.5;   // s — must match CSS transition
+const VIDEO_FADE_OUT_LEAD = 2;     // s — start fading out this long before video ends
+
+let videoTimers = { appearTimeout: null, fadeOutCheckInterval: null };
+
+function clearDayVideoTimers() {
+  if (videoTimers.appearTimeout) {
+    clearTimeout(videoTimers.appearTimeout);
+    videoTimers.appearTimeout = null;
+  }
+  if (videoTimers.fadeOutCheckInterval) {
+    clearInterval(videoTimers.fadeOutCheckInterval);
+    videoTimers.fadeOutCheckInterval = null;
+  }
+}
+
+function resetDayVideo() {
+  clearDayVideoTimers();
+  const layer = document.getElementById('day-video-layer');
+  const video = document.getElementById('day-video');
+  if (!layer || !video) return;
+  layer.classList.remove('visible');
+  video.pause();
+  video.removeAttribute('src');
+  video.load();
+}
+
+function showDayVideo(dayNumber) {
+  resetDayVideo();
+  const filename = dayVideoMap[dayNumber];
+  if (!filename) return;
+
+  const layer = document.getElementById('day-video-layer');
+  const video = document.getElementById('day-video');
+
+  video.src = `./${encodeURIComponent(filename)}`;
+  video.currentTime = 0;
+
+  videoTimers.appearTimeout = setTimeout(() => {
+    video.play().catch(() => { }); // ignore if autoplay is blocked
+    layer.classList.add('visible');
+
+    videoTimers.fadeOutCheckInterval = setInterval(() => {
+      if (!video.duration || isNaN(video.duration)) return;
+      if (video.currentTime >= video.duration - VIDEO_FADE_OUT_LEAD) {
+        layer.classList.remove('visible');
+        clearInterval(videoTimers.fadeOutCheckInterval);
+        videoTimers.fadeOutCheckInterval = null;
+        setTimeout(() => video.pause(), VIDEO_FADE_DURATION * 1000);
+      }
+    }, 200);
+  }, VIDEO_APPEAR_DELAY);
+}
+
+//////////////////////////////////////////////////
+
+const playlist = ['bg1.mp3', 'bg2.mp3'];
+let currentTrackIndex = 0;
+
+const bgAudio = document.getElementById('bg-audio');
+bgAudio.volume = 0.3;
+bgAudio.src = playlist[currentTrackIndex];
+
+bgAudio.addEventListener('ended', () => {
+  currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+  bgAudio.src = playlist[currentTrackIndex];
+  bgAudio.play().catch(err => console.log('Playback error:', err));
+});
+
+function playAudio() {
+  if (bgAudio.paused) {
+    bgAudio.play().then(() => {
+      removeInteractionListeners();
+    }).catch(err => {
+      console.log('Autoplay deferred pending user interaction.');
+    });
+  }
+}
+
+function handleUserInteraction() {
+  playAudio();
+}
+
+function removeInteractionListeners() {
+  window.removeEventListener('pointerdown', handleUserInteraction);
+  window.removeEventListener('touchstart', handleUserInteraction);
+  window.removeEventListener('keydown', handleUserInteraction);
+  window.removeEventListener('click', handleUserInteraction);
+}
+
+////////////////////////////////////////////////////
+
 function resetGame() {
+  resetDayVideo();
   state = { day: 0, suspicion: 0, insights: 0, completed: false, evidenceUnlocked: [], reflections: {} };
   document.getElementById('screen-end').classList.add('hidden');
   document.getElementById('screen-journal').classList.add('hidden');
@@ -823,3 +973,10 @@ window.advanceDay = advanceDay;
 window.updateWordCount = updateWordCount;
 window.submitReflection = submitReflection;
 window.resetGame = resetGame;
+
+document.addEventListener('DOMContentLoaded', playAudio);
+
+window.addEventListener('pointerdown', handleUserInteraction, { once: true });
+window.addEventListener('touchstart', handleUserInteraction, { once: true });
+window.addEventListener('keydown', handleUserInteraction, { once: true });
+window.addEventListener('click', handleUserInteraction, { once: true });
